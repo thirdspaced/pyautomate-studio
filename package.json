@@ -27,7 +27,7 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "pyodide": "0.26.4"
+    "pyodide": "0.26.4",
     "@types/node": "^20.0.0",
     "typescript": "^5.7.0",
     "@types/react": "^19.0.0",
