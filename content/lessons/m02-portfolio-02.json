@@ -1,0 +1,59 @@
+{
+  "id": "m02-portfolio-02",
+  "moduleId": "m02",
+  "title": "Portfolio: Single-Expression Temperature",
+  "order": 6,
+  "estimatedMinutes": 10,
+  "objectives": [
+    "Write a complex Boolean expression combining and/or",
+    "Use chained comparisons for range checks",
+    "Simplify nested if statements into a single condition"
+  ],
+  "prerequisites": ["m02-portfolio-01"],
+  "tags": ["portfolio", "compound_conditions", "chained_comparisons"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Single-Expression Safe Temperature",
+      "content": "Rewrite the safe temperature checker so the entire decision is made with a **single if/else** using one compound Boolean expression — no nested ifs allowed.\n\nSafe if:\n- Celsius and between 16–38 (inclusive), OR\n- Fahrenheit and between 60.8–100.4 (inclusive)\n\nExample:\n```\nEnter C or F:\nF\nEnter degrees:\n72\nSafe\n```",
+      "starterCode": "print('Enter C or F:')\nscale = input()\nprint('Enter degrees:')\ndegrees = float(input())\n\n# Write a SINGLE if/else with a compound condition:\nif ___:\n    print('Safe')\nelse:\n    print('Dangerous')",
+      "solutionCode": "print('Enter C or F:')\nscale = input()\nprint('Enter degrees:')\ndegrees = float(input())\n\nif (scale == 'C' and 16 <= degrees <= 38) or (scale == 'F' and 60.8 <= degrees <= 100.4):\n    print('Safe')\nelse:\n    print('Dangerous')",
+      "tests": [
+        {
+          "name": "Uses single if/else (no elif, no nesting)",
+          "assertion": "_assert_test('single_if', 'elif' not in _source_code and _source_code.count('    if') <= 0, 'Should be a single if/else — no elif or nested ifs')",
+          "points": 5
+        },
+        {
+          "name": "Uses and + or operators",
+          "assertion": "_assert_test('operators', 'and' in _source_code and 'or' in _source_code, 'Must use both and + or in the condition')",
+          "points": 5
+        },
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "Celsius safe: `scale == 'C' and 16 <= degrees <= 38`",
+        "Fahrenheit safe: `scale == 'F' and 60.8 <= degrees <= 100.4`",
+        "Combine: `(celsius_condition) or (fahrenheit_condition)` — use parentheses for clarity."
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["compound Boolean expressions", "and/or", "chained comparisons"],
+        "acceptanceTests": [
+          "Uses a single if/else with no nesting",
+          "Condition uses both and + or operators",
+          "Correctly evaluates two different categories"
+        ],
+        "exampleRemixes": [
+          "Validate a date (month 1-12 AND day 1-31)",
+          "Check if a password is strong (length >= 8 AND has digit AND has letter)",
+          "Determine discount eligibility (student OR senior OR member)"
+        ]
+      }
+    }
+  ]
+}

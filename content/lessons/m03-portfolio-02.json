@@ -1,0 +1,64 @@
+{
+  "id": "m03-portfolio-02",
+  "moduleId": "m03",
+  "title": "Portfolio: Christmas Tree Printer",
+  "order": 5,
+  "estimatedMinutes": 15,
+  "objectives": [
+    "Combine for loops with the random module",
+    "Use nested loops to build complex patterns",
+    "Apply conditional logic inside loops"
+  ],
+  "prerequisites": ["m03-portfolio-01", "m03-l03"],
+  "tags": ["portfolio", "random", "nested_loops", "patterns"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Christmas Tree Printer",
+      "content": "Enhance your Tree Printer by randomly placing ornaments (`o`) on the branches. Each branch character has a 1-in-4 chance of being replaced by an ornament.\n\n**Example for size 5 (output varies each run):**\n```\nEnter the tree size: 5\n    ^\n   ^o^\n  ^^^o^\n ^oo^^^^\n^^o^o^^^^\n    #\n    #\n```\n\n**Approach:**\n- Use the same spacing logic as the Tree Printer\n- For each branch character, use `random.randint(1, 4)` — if the result is 1, use `'o'` instead of `'^'`\n- Build each row character by character using a nested loop",
+      "starterCode": "import random\n\nprint('Enter the tree size:')\nsize = int(input())\n\n# Print the tree branches with random ornaments\nfor row_num in range(1, size + 1):\n    spaces = ' ' * (size - row_num)\n    branch_width = row_num * 2 - 1\n    tree_row = ''\n    for char_num in range(branch_width):\n        if random.randint(1, 4) == 1:\n            tree_row = tree_row + ___\n        else:\n            tree_row = tree_row + ___\n    print(spaces + tree_row)\n\n# Print the trunk\ntrunk_spaces = ' ' * (size - 1)\nprint(trunk_spaces + '#')\nprint(trunk_spaces + '#')",
+      "solutionCode": "import random\n\nprint('Enter the tree size:')\nsize = int(input())\n\nfor row_num in range(1, size + 1):\n    spaces = ' ' * (size - row_num)\n    branch_width = row_num * 2 - 1\n    tree_row = ''\n    for char_num in range(branch_width):\n        if random.randint(1, 4) == 1:\n            tree_row = tree_row + 'o'\n        else:\n            tree_row = tree_row + '^'\n    print(spaces + tree_row)\n\ntrunk_spaces = ' ' * (size - 1)\nprint(trunk_spaces + '#')\nprint(trunk_spaces + '#')",
+      "tests": [
+        {
+          "name": "Uses random module",
+          "assertion": "_assert_test('uses_random', 'import random' in _source_code and 'random.randint' in _source_code, 'Must import and use random.randint()')",
+          "points": 3
+        },
+        {
+          "name": "Uses nested for loops",
+          "assertion": "_assert_test('nested_loops', _source_code.count('for ') >= 2, 'Must use at least 2 for loops (one nested inside the other)')",
+          "points": 5
+        },
+        {
+          "name": "Output contains branches and ornaments",
+          "assertion": "_assert_test('has_chars', '^' in _captured_stdout and '#' in _captured_stdout, 'Output should contain ^ for branches and # for trunk')",
+          "points": 3
+        },
+        {
+          "name": "No errors",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "When `random.randint(1, 4) == 1`, add `'o'` (ornament). Otherwise add `'^'` (branch).",
+        "Build each row as a string by concatenating one character at a time.",
+        "The nested loop runs `branch_width` times for each row."
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["nested for loops", "random module", "string building", "conditionals in loops"],
+        "acceptanceTests": [
+          "Uses nested loops (loop inside a loop)",
+          "Uses random to vary the output",
+          "Produces a different pattern each run"
+        ],
+        "exampleRemixes": [
+          "Generate a random pixel art grid with colored symbols",
+          "Create a random maze-like pattern",
+          "Build a random password of specified length with letters, digits, and symbols"
+        ]
+      }
+    }
+  ]
+}

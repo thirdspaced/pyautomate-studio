@@ -1,0 +1,120 @@
+{
+  "id": "m03-l01",
+  "moduleId": "m03",
+  "title": "while Loops",
+  "order": 1,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Write while loops that repeat code until a condition becomes False",
+    "Use break to exit a loop early and continue to skip iterations",
+    "Understand truthy and falsey values",
+    "Avoid infinite loops"
+  ],
+  "prerequisites": ["m02-l04"],
+  "tags": ["while", "loops", "break", "continue", "truthy", "falsey"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Repeating Code with while",
+      "content": "A `while` loop repeats its block as long as the condition is `True`. It's like an `if` statement that keeps going.\n\n```python\ni = 0\nwhile i < 5:\n    print(i)\n    i = i + 1\n```\n\n**`break`** — immediately exits the loop, jumping to the code after it.\n**`continue`** — skips the rest of the current iteration and jumps back to the condition check.\n\n**Truthy and falsey values:** In a condition, Python treats certain values as equivalent to `True` or `False`:\n- **Falsey:** `0`, `0.0`, `''` (empty string), `None`, `False`\n- **Truthy:** any non-zero number, any non-empty string, `True`\n\n**Infinite loops** happen when the condition never becomes `False`. You can use `break` to exit, or make sure your loop variable is updated."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Basic while Loops",
+      "content": "Run each example and observe how many times the loop body executes. Pay attention to what happens when the condition starts as False.",
+      "starterCode": "# Example 1: Count to 5\ni = 0\nwhile i < 6:\n    print('Hello')\n    i = i + 1\nprint('Loop finished. i =', i)\n\nprint('---')\n\n# Example 2: Condition already False — loop never runs\ni = 9999\nwhile i < 6:\n    print('This never prints')\n    i = i + 1\nprint('Skipped the loop!')",
+      "hints": [
+        "Example 1 prints 'Hello' six times (i goes 0, 1, 2, 3, 4, 5).",
+        "Example 2 never enters the loop because 9999 < 6 is False.",
+        "Always make sure something inside the loop changes the condition, or it runs forever!"
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Predict the Output",
+      "content": "For each loop, predict what gets printed. Fill in the expected output.",
+      "starterCode": "# What does each loop print?\n\n# Loop A: prints numbers 0 to 5\ni = 0\nwhile i < 6:\n    print(i)\n    i = i + 1\n# How many numbers printed? Replace ___:\ncount_a = ___\n\nprint('---')\n\n# Loop B: break immediately\ni = 0\nwhile i < 6:\n    break\n    print(i)\n    i = i + 1\n# How many numbers printed? Replace ___:\ncount_b = ___\n\nprint('---')\n\n# Loop C: print then break\ni = 0\nwhile i < 6:\n    print(i)\n    break\n    i = i + 1\n# How many numbers printed? Replace ___:\ncount_c = ___\n\nprint('Counts:', count_a, count_b, count_c)",
+      "solutionCode": "i = 0\nwhile i < 6:\n    print(i)\n    i = i + 1\ncount_a = 6\n\nprint('---')\n\ni = 0\nwhile i < 6:\n    break\n    print(i)\n    i = i + 1\ncount_b = 0\n\nprint('---')\n\ni = 0\nwhile i < 6:\n    print(i)\n    break\n    i = i + 1\ncount_c = 1\n\nprint('Counts:', count_a, count_b, count_c)",
+      "tests": [
+        {
+          "name": "Correct counts",
+          "assertion": "_assert_test('counts', 'Counts: 6 0 1' in _captured_stdout, 'Loop A prints 6 numbers, Loop B prints 0 (break before print), Loop C prints 1 (print then break)')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Loop A: i goes from 0 to 5 → prints 6 numbers.",
+        "Loop B: `break` is the first line — the loop exits immediately without printing anything.",
+        "Loop C: prints `0`, then immediately breaks — only 1 number printed."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Truthy and Falsey",
+      "content": "Identify each value as truthy or falsey. Replace `___` with `True` (truthy) or `False` (falsey).",
+      "starterCode": "# Truthy (True) or Falsey (False)?\na = bool(0) == ___\nb = bool('False') == ___    # Careful — this is a non-empty string!\nc = bool('') == ___         # Empty string\nd = bool(-1.0) == ___       # Negative number\ne = bool('true') == ___     # Non-empty string\nf = bool(42) == ___\n\nprint(a, b, c, d, e, f)",
+      "solutionCode": "a = bool(0) == False        # 0 is falsey\nb = bool('False') == True   # Non-empty string is truthy!\nc = bool('') == False       # Empty string is falsey\nd = bool(-1.0) == True      # Any nonzero number is truthy\ne = bool('true') == True    # Non-empty string is truthy\nf = bool(42) == True        # Nonzero is truthy\n\nprint(a, b, c, d, e, f)",
+      "tests": [
+        {
+          "name": "All truthy/falsey identifications correct",
+          "assertion": "_assert_test('truthy', 'True True True True True True' in _captured_stdout, 'Remember: 0 and empty string are falsey. Everything else is truthy — including the STRING \"False\"!')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`0` is the only falsey integer. `''` (empty string) is the only falsey string.",
+        "`'False'` is a non-empty string — it's truthy! The content doesn't matter, only whether it's empty.",
+        "All nonzero numbers (including negatives) are truthy."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Password Loop",
+      "content": "Write a program that keeps asking for a password until the user types `'secret'`. Use a `while` loop.",
+      "starterCode": "# Keep asking until the user types 'secret'\npassword = ''\n\nwhile ___:\n    print('Enter the password:')\n    password = input()\n\nprint('Access granted!')",
+      "solutionCode": "password = ''\n\nwhile password != 'secret':\n    print('Enter the password:')\n    password = input()\n\nprint('Access granted!')",
+      "tests": [
+        {
+          "name": "Uses while loop",
+          "assertion": "_assert_test('uses_while', 'while' in _source_code, 'Must use a while loop')",
+          "points": 3
+        },
+        {
+          "name": "Prints access granted",
+          "assertion": "_assert_test('granted', 'Access granted!' in _captured_stdout, 'Should print Access granted! after correct password')",
+          "points": 3
+        },
+        {
+          "name": "No errors",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "The loop should continue while `password != 'secret'`.",
+        "Initialize `password = ''` so the condition is True on the first check.",
+        "Alternative: use `while True:` with a `break` when password matches."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can write while loops with proper conditions" },
+        { "id": "ck2", "text": "I understand break (exit loop) and continue (skip iteration)" },
+        { "id": "ck3", "text": "I can identify truthy and falsey values" },
+        { "id": "ck4", "text": "I know how to avoid infinite loops" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "When would you choose a while loop over doing something manually?",
+        "What's the most important thing to remember to avoid infinite loops?",
+        "Why is the string 'False' considered truthy?"
+      ]
+    }
+  ]
+}

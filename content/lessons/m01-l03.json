@@ -1,0 +1,131 @@
+{
+  "id": "m01-l03",
+  "moduleId": "m01",
+  "title": "Storing Values in Variables",
+  "order": 3,
+  "estimatedMinutes": 20,
+  "objectives": [
+    "Store values in variables using the assignment operator =",
+    "Overwrite variable values with new assignments",
+    "Follow Python's variable naming rules",
+    "Understand that variable names are case-sensitive"
+  ],
+  "prerequisites": ["m01-l01", "m01-l02"],
+  "tags": ["variables", "assignment", "naming_rules", "case_sensitivity"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Variables Are Storage Boxes",
+      "content": "A **variable** is like a labeled box in the computer's memory that stores a single value. You create a variable with an **assignment statement**: a name, the `=` operator, and a value.\n\n```python\nspam = 42\n```\n\nAfter this, the name `spam` refers to the value `42`. You can use `spam` anywhere you'd use the number `42`.\n\n**Key rules for variable names:**\n- Can contain letters, numbers, and underscores\n- Cannot start with a number\n- Cannot contain spaces\n- Are **case-sensitive** (`spam`, `Spam`, and `SPAM` are three different variables)\n\n**Good practice:** choose descriptive names like `user_age` or `total_price` rather than `x` or `temp`."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Creating & Using Variables",
+      "content": "Run this code and observe how variables store and retrieve values. Pay attention to what happens when a variable is overwritten.",
+      "starterCode": "# Creating variables\nnephew = 'Jack'\nprint(nephew)         # Prints the VALUE stored in nephew\n\n# Overwriting a variable\nnephew = 'Albert'\nprint(nephew)         # What prints now?\n\n# Case sensitivity\nNephew = 'Charlie'\nprint(nephew)         # Still 'Albert' — different variable!\nprint(Nephew)         # 'Charlie'",
+      "hints": [
+        "When you assign a new value, the old value is forgotten.",
+        "`nephew` and `Nephew` are two completely separate variables because Python is case-sensitive.",
+        "The most recent assignment wins: `nephew = 'Albert'` replaces `'Jack'`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Predict the Output",
+      "content": "Read each program carefully and replace `___` with what you think will be printed. Then run the code to check.",
+      "starterCode": "# Program 1\nfruit = 'apple'\nfruit = 'banana'\nresult_1 = fruit\n# What is result_1? Replace ___ below:\nprint(result_1 == '___')\n\n# Program 2\nx = 10\ny = x\nx = 20\nresult_2 = y\n# What is result_2? Replace ___ below:\nprint(result_2 == ___)\n\n# Program 3\nname = 'Alice'\ngreeting = 'Hello, ' + name\nname = 'Bob'\nresult_3 = greeting\n# What is result_3? Replace ___ below:\nprint(result_3 == '___')",
+      "solutionCode": "# Program 1\nfruit = 'apple'\nfruit = 'banana'\nresult_1 = fruit\nprint(result_1 == 'banana')\n\n# Program 2\nx = 10\ny = x\nx = 20\nresult_2 = y\nprint(result_2 == 10)\n\n# Program 3\nname = 'Alice'\ngreeting = 'Hello, ' + name\nname = 'Bob'\nresult_3 = greeting\nprint(result_3 == 'Hello, Alice')",
+      "tests": [
+        {
+          "name": "All three predictions are True",
+          "assertion": "_assert_test('all_correct', _captured_stdout.strip() == 'True\\nTrue\\nTrue', 'One or more predictions is wrong — trace through each program carefully')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Program 1: `fruit` is overwritten to `'banana'` before `result_1` is assigned.",
+        "Program 2: `y = x` copies the current value of `x` (which is `10`). Changing `x` later doesn't affect `y`.",
+        "Program 3: `greeting` was built when `name` was `'Alice'`. Changing `name` later doesn't change `greeting`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Valid or Invalid Names?",
+      "content": "Which of these are valid Python variable names? Set each to `True` (valid) or `False` (invalid).",
+      "starterCode": "# Are these valid variable names? True or False\nname_1 = ___   # number_of_cats\nname_2 = ___   # number-of-cats   (has a hyphen)\nname_3 = ___   # 42cats           (starts with number)\nname_4 = ___   # numberOfCats     (camelCase)\nname_5 = ___   # _42              (starts with underscore)\nname_6 = ___   # my variable      (has a space)\n\nprint(name_1, name_2, name_3, name_4, name_5, name_6)",
+      "solutionCode": "name_1 = True    # number_of_cats — valid\nname_2 = False   # number-of-cats — invalid (hyphen not allowed)\nname_3 = False   # 42cats — invalid (starts with number)\nname_4 = True    # numberOfCats — valid (camelCase is fine)\nname_5 = True    # _42 — valid (underscore start is OK)\nname_6 = False   # my variable — invalid (spaces not allowed)\n\nprint(name_1, name_2, name_3, name_4, name_5, name_6)",
+      "tests": [
+        {
+          "name": "Correct identification of valid/invalid names",
+          "assertion": "_assert_test('names', 'True False False True True False' in _captured_stdout, 'Check your answers: only names with letters, digits, and underscores (not starting with a digit) are valid')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Valid names can only contain letters, digits, and underscores.",
+        "Names CANNOT start with a digit, contain spaces, or use hyphens.",
+        "Answer: True, False, False, True, True, False."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Common Variable Errors",
+      "content": "These are mistakes that beginners frequently make. Read each error message and understand what went wrong.",
+      "starterCode": "# ERROR 1: Using a variable before defining it\n# Uncomment to see the error:\n# print(age)\n\n# ERROR 2: Forgetting quotes makes Python think it's a variable\nnephew = 'Jack'\n# print(Jack)    # NameError! Jack is not a variable\nprint(nephew)    # Correct — use the variable name\n\n# ERROR 3: Confusing variable name with string\nprint('nephew')  # Prints the word 'nephew' (a string)\nprint(nephew)    # Prints 'Jack' (the variable's value)\n\n# Try uncommenting the error lines one at a time to see the messages",
+      "hints": [
+        "A `NameError` means Python doesn't recognize a name — either you haven't defined it yet, or you made a typo.",
+        "`'nephew'` (with quotes) is a string. `nephew` (without quotes) is a variable.",
+        "Always define a variable before you use it."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Swap Two Variables",
+      "content": "Swap the values of `a` and `b` without typing the values directly. After your code runs, `a` should be `'world'` and `b` should be `'hello'`.\n\n**Hint:** you'll need a temporary variable.",
+      "starterCode": "a = 'hello'\nb = 'world'\n\n# Swap the values of a and b\n# Your code here:\n\n\n\nprint('a =', a)\nprint('b =', b)",
+      "solutionCode": "a = 'hello'\nb = 'world'\n\n# Swap using a temporary variable\ntemp = a\na = b\nb = temp\n\nprint('a =', a)\nprint('b =', b)",
+      "tests": [
+        {
+          "name": "a contains 'world' after swap",
+          "assertion": "_assert_test('a_swapped', 'a = world' in _captured_stdout, 'a should be world after the swap')",
+          "points": 3
+        },
+        {
+          "name": "b contains 'hello' after swap",
+          "assertion": "_assert_test('b_swapped', 'b = hello' in _captured_stdout, 'b should be hello after the swap')",
+          "points": 3
+        },
+        {
+          "name": "Does not hardcode values",
+          "assertion": "_assert_test('no_hardcode', \"a = 'world'\" not in _source_code.split('# Swap')[1] if '# Swap' in _source_code else True, 'Swap the variables — do not just reassign the string values directly')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "If you just write `a = b`, you lose `a`'s original value. Save it first!",
+        "Create a third variable: `temp = a`, then `a = b`, then `b = temp`.",
+        "Python also supports simultaneous swap: `a, b = b, a` — but try the temp approach first."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Make sure you're confident with these ideas:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can create and overwrite variables" },
+        { "id": "ck2", "text": "I know that variable names are case-sensitive" },
+        { "id": "ck3", "text": "I can identify valid vs invalid variable names" },
+        { "id": "ck4", "text": "I understand the difference between 'nephew' (string) and nephew (variable)" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Why do you think Python makes variable names case-sensitive?",
+        "What naming style do you prefer: snake_case (number_of_cats) or camelCase (numberOfCats)? Why?",
+        "When you swap two variables, why can't you just write a = b then b = a?"
+      ]
+    }
+  ]
+}

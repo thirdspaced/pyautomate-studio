@@ -1,0 +1,101 @@
+{
+  "id": "m03-l03",
+  "moduleId": "m03",
+  "title": "Importing Modules",
+  "order": 3,
+  "estimatedMinutes": 20,
+  "objectives": [
+    "Import modules from Python's standard library",
+    "Use random.randint() and random.choice() to generate random values",
+    "Understand the difference between built-in functions and module functions",
+    "Use sys.exit() to terminate a program early"
+  ],
+  "prerequisites": ["m03-l01", "m03-l02"],
+  "tags": ["import", "modules", "random", "sys", "standard_library"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Extending Python with Modules",
+      "content": "Python's **standard library** includes many modules — collections of pre-written functions you can use in your programs. To access them, use `import`.\n\n```python\nimport random\nprint(random.randint(1, 10))  # Random int from 1 to 10\n```\n\n**Built-in functions** (like `print()`, `len()`, `input()`) don't need importing — they're always available.\n\n**Module functions** need their module name as a prefix: `random.randint()`, not just `randint()`.\n\n**Useful modules for beginners:**\n- `random` — random number generation\n- `sys` — system functions like `sys.exit()`\n- `math` — mathematical functions like `math.sqrt()`\n\n**Import syntax:**\n- `import random` ✓\n- `import random, sys` ✓ (multiple modules)\n- `import 'random'` ✗ (no quotes!)\n- `import sys random` ✗ (need a comma)"
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: The random Module",
+      "content": "Run this code multiple times — you'll get different results each time because of the random functions!",
+      "starterCode": "import random\n\n# Random integer between 1 and 10 (inclusive)\nprint('Random number:', random.randint(1, 10))\nprint('Random number:', random.randint(1, 10))\nprint('Random number:', random.randint(1, 10))\n\n# Random choice from a list\ncolors = ['red', 'blue', 'green', 'yellow']\nprint('Random color:', random.choice(colors))\nprint('Random color:', random.choice(colors))",
+      "hints": [
+        "`random.randint(1, 10)` includes BOTH endpoints — you can get 1 or 10.",
+        "`random.choice()` picks one random item from a list.",
+        "Run the code multiple times to see different outputs!"
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Guess the Number",
+      "content": "Write a simple number guessing game. The computer picks a random number from 1 to 20, and the player gets one guess.",
+      "starterCode": "import random\n\n# Computer picks a secret number\nsecret = random.randint(1, 20)\n\nprint('I am thinking of a number between 1 and 20.')\nprint('Take a guess:')\nguess = int(input())\n\n# Compare and give feedback\nif guess == secret:\n    print('Correct! You got it!')\nelif ___:\n    print('Too low! The number was ' + str(secret))\nelse:\n    print('Too high! The number was ' + str(secret))",
+      "solutionCode": "import random\n\nsecret = random.randint(1, 20)\n\nprint('I am thinking of a number between 1 and 20.')\nprint('Take a guess:')\nguess = int(input())\n\nif guess == secret:\n    print('Correct! You got it!')\nelif guess < secret:\n    print('Too low! The number was ' + str(secret))\nelse:\n    print('Too high! The number was ' + str(secret))",
+      "tests": [
+        {
+          "name": "Uses random module",
+          "assertion": "_assert_test('uses_random', 'import random' in _source_code and 'random.randint' in _source_code, 'Must import and use random.randint()')",
+          "points": 3
+        },
+        {
+          "name": "Gives feedback",
+          "assertion": "_assert_test('feedback', 'Correct' in _captured_stdout or 'Too low' in _captured_stdout or 'Too high' in _captured_stdout, 'Must provide feedback on the guess')",
+          "points": 3
+        },
+        {
+          "name": "No errors",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "The middle condition checks `guess < secret` for 'Too low!'",
+        "The `else` handles `guess > secret` for 'Too high!'",
+        "Use `str(secret)` to concatenate the number with the message string."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Valid or Invalid Import?",
+      "content": "Identify which import statements are valid.",
+      "starterCode": "# Valid (True) or Invalid (False)?\na = ___   # import random, sys\nb = ___   # import 'random'\nc = ___   # import sys random\nd = ___   # import random,\ne = ___   # import sys\n\nprint(a, b, c, d, e)",
+      "solutionCode": "a = True    # import random, sys — valid\nb = False   # import 'random' — no quotes!\nc = False   # import sys random — missing comma\nd = False   # import random, — trailing comma with nothing after\ne = True    # import sys — valid\n\nprint(a, b, c, d, e)",
+      "tests": [
+        {
+          "name": "Correct import identification",
+          "assertion": "_assert_test('imports', 'True False False False True' in _captured_stdout, 'Valid: import random, sys and import sys. The rest have syntax issues.')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Don't use quotes around module names.",
+        "Multiple modules need commas: `import random, sys`.",
+        "A trailing comma with no module after it is invalid."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Module 3 Final Check",
+      "content": "You've completed all the loop and module lessons!",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can write while loops and for loops" },
+        { "id": "ck2", "text": "I can use range() with different numbers of arguments" },
+        { "id": "ck3", "text": "I can import and use modules from the standard library" },
+        { "id": "ck4", "text": "I know the difference between built-in and module functions" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Module 3 Reflection",
+      "prompts": [
+        "What kind of program would benefit most from random number generation?",
+        "Why do you think Python organizes code into modules instead of making everything built-in?",
+        "Can you think of a repetitive task in your daily life that a loop could automate?"
+      ]
+    }
+  ]
+}

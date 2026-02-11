@@ -1,0 +1,198 @@
+{
+  "title": "PyAutomate Studio — Automate the Boring Stuff with Python",
+  "version": "1.0.0",
+  "modules": [
+    {
+      "id": "m01",
+      "title": "Python Basics",
+      "order": 1,
+      "description": "Explore expressions, data types, variables, and your first complete program.",
+      "lessons": ["m01-l01", "m01-l02", "m01-l03", "m01-l04", "m01-l05"],
+      "portfolioProjects": ["m01-portfolio-01", "m01-portfolio-02"]
+    },
+    {
+      "id": "m02",
+      "title": "if-else and Flow Control",
+      "order": 2,
+      "description": "Make decisions in your code with Boolean logic and conditional statements.",
+      "lessons": ["m02-l01", "m02-l02", "m02-l03", "m02-l04"],
+      "portfolioProjects": ["m02-portfolio-01", "m02-portfolio-02", "m02-portfolio-03"]
+    },
+    {
+      "id": "m03",
+      "title": "Loops",
+      "order": 3,
+      "description": "Repeat actions with while and for loops, and import useful modules.",
+      "lessons": ["m03-l01", "m03-l02", "m03-l03"],
+      "portfolioProjects": ["m03-portfolio-01", "m03-portfolio-02"]
+    },
+    {
+      "id": "m04",
+      "title": "Functions",
+      "order": 4,
+      "description": "Create reusable code with functions, parameters, return values, and scope.",
+      "lessons": ["m04-l01", "m04-l02", "m04-l03"],
+      "portfolioProjects": ["m04-portfolio-01", "m04-portfolio-02", "m04-portfolio-03"]
+    },
+    {
+      "id": "m05",
+      "title": "Debugging",
+      "order": 5,
+      "description": "Find and fix bugs using logging, assertions, and debugging techniques.",
+      "lessons": ["m05-l01", "m05-l02"],
+      "portfolioProjects": ["m05-portfolio-01"]
+    },
+    {
+      "id": "m06",
+      "title": "Lists",
+      "order": 6,
+      "description": "Work with ordered collections: indexing, slicing, methods, and references.",
+      "lessons": ["m06-l01", "m06-l02", "m06-l03", "m06-l04"],
+      "portfolioProjects": ["m06-portfolio-01", "m06-portfolio-02"]
+    },
+    {
+      "id": "m07",
+      "title": "Dictionaries and Structuring Data",
+      "order": 7,
+      "description": "Model real-world data with key-value pairs and nested structures.",
+      "lessons": ["m07-l01", "m07-l02", "m07-l03"],
+      "portfolioProjects": ["m07-portfolio-01", "m07-portfolio-02", "m07-portfolio-03"]
+    },
+    {
+      "id": "m08",
+      "title": "Strings and Text Editing",
+      "order": 8,
+      "description": "Manipulate text with string methods, f-strings, and the clipboard.",
+      "lessons": ["m08-l01", "m08-l02", "m08-l03"],
+      "portfolioProjects": ["m08-portfolio-01", "m08-portfolio-02"]
+    },
+    {
+      "id": "m09",
+      "title": "Regex — Text Pattern Matching",
+      "order": 9,
+      "description": "Find and extract text patterns using regular expressions.",
+      "lessons": ["m09-l01", "m09-l02", "m09-l03"],
+      "portfolioProjects": ["m09-portfolio-01", "m09-portfolio-02"]
+    },
+    {
+      "id": "m10",
+      "title": "Reading and Writing Files",
+      "order": 10,
+      "description": "Navigate the filesystem and read/write text and binary files.",
+      "lessons": ["m10-l01", "m10-l02", "m10-l03"],
+      "portfolioProjects": ["m10-portfolio-01", "m10-portfolio-02", "m10-portfolio-03"]
+    },
+    {
+      "id": "m11",
+      "title": "Organizing Files",
+      "order": 11,
+      "description": "Copy, move, rename, and archive files programmatically.",
+      "lessons": ["m11-l01", "m11-l02"],
+      "portfolioProjects": ["m11-portfolio-01", "m11-portfolio-02"]
+    },
+    {
+      "id": "m12",
+      "title": "Command Line Programs",
+      "order": 12,
+      "description": "Design and deploy programs that run from the terminal.",
+      "lessons": ["m12-l01", "m12-l02"],
+      "portfolioProjects": ["m12-portfolio-01", "m12-portfolio-02"]
+    },
+    {
+      "id": "m13",
+      "title": "Web Scraping",
+      "order": 13,
+      "description": "Download web pages, parse HTML, and automate browsers.",
+      "lessons": ["m13-l01", "m13-l02", "m13-l03"],
+      "portfolioProjects": ["m13-portfolio-01", "m13-portfolio-02"]
+    },
+    {
+      "id": "m14",
+      "title": "Excel Spreadsheets",
+      "order": 14,
+      "description": "Read, create, and modify Excel files with openpyxl.",
+      "lessons": ["m14-l01", "m14-l02"],
+      "portfolioProjects": ["m14-portfolio-01", "m14-portfolio-02"]
+    },
+    {
+      "id": "m15",
+      "title": "Google Sheets",
+      "order": 15,
+      "description": "Interact with Google Sheets programmatically.",
+      "lessons": ["m15-l01"],
+      "portfolioProjects": ["m15-portfolio-01"]
+    },
+    {
+      "id": "m16",
+      "title": "SQLite Databases",
+      "order": 16,
+      "description": "Store and query structured data with SQL and sqlite3.",
+      "lessons": ["m16-l01", "m16-l02", "m16-l03"],
+      "portfolioProjects": ["m16-portfolio-01", "m16-portfolio-02"]
+    },
+    {
+      "id": "m17",
+      "title": "PDF and Word Documents",
+      "order": 17,
+      "description": "Extract and generate PDF and Word documents.",
+      "lessons": ["m17-l01", "m17-l02"],
+      "portfolioProjects": ["m17-portfolio-01", "m17-portfolio-02"]
+    },
+    {
+      "id": "m18",
+      "title": "CSV, JSON, and XML Files",
+      "order": 18,
+      "description": "Work with common data interchange formats.",
+      "lessons": ["m18-l01", "m18-l02"],
+      "portfolioProjects": ["m18-portfolio-01"]
+    },
+    {
+      "id": "m19",
+      "title": "Time, Scheduling, and Launching Programs",
+      "order": 19,
+      "description": "Handle dates, schedule tasks, and launch external programs.",
+      "lessons": ["m19-l01", "m19-l02"],
+      "portfolioProjects": ["m19-portfolio-01", "m19-portfolio-02"]
+    },
+    {
+      "id": "m20",
+      "title": "Email, Texts, and Notifications",
+      "order": 20,
+      "description": "Send automated emails, texts, and push notifications.",
+      "lessons": ["m20-l01"],
+      "portfolioProjects": ["m20-portfolio-01"]
+    },
+    {
+      "id": "m21",
+      "title": "Graphs and Image Manipulation",
+      "order": 21,
+      "description": "Create charts and manipulate images programmatically.",
+      "lessons": ["m21-l01", "m21-l02"],
+      "portfolioProjects": ["m21-portfolio-01"]
+    },
+    {
+      "id": "m22",
+      "title": "Recognizing Text in Images",
+      "order": 22,
+      "description": "Use OCR to extract text from images and scanned documents.",
+      "lessons": ["m22-l01"],
+      "portfolioProjects": ["m22-portfolio-01"]
+    },
+    {
+      "id": "m23",
+      "title": "Controlling the Keyboard and Mouse",
+      "order": 23,
+      "description": "Automate GUI interactions with keyboard and mouse control.",
+      "lessons": ["m23-l01"],
+      "portfolioProjects": ["m23-portfolio-01"]
+    },
+    {
+      "id": "m24",
+      "title": "Text-to-Speech and Speech Recognition",
+      "order": 24,
+      "description": "Make programs that speak and listen.",
+      "lessons": ["m24-l01"],
+      "portfolioProjects": ["m24-portfolio-01"]
+    }
+  ]
+}

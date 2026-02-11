@@ -1,0 +1,112 @@
+{
+  "id": "m02-l02",
+  "moduleId": "m02",
+  "title": "Boolean Operators: and, or, not",
+  "order": 2,
+  "estimatedMinutes": 20,
+  "objectives": [
+    "Understand the truth tables for and, or, and not",
+    "Combine comparison operators with Boolean operators",
+    "Evaluate complex Boolean expressions step by step",
+    "Avoid the common mistake of writing name == 'Alice' or 'Bob'"
+  ],
+  "prerequisites": ["m02-l01"],
+  "tags": ["boolean_operators", "and", "or", "not", "truth_tables"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Combining Conditions",
+      "content": "The three **Boolean operators** let you combine or modify conditions:\n\n**`and`** — Both sides must be `True` for the result to be `True`\n| A | B | A and B |\n|---|---|---|\n| True | True | **True** |\n| True | False | False |\n| False | True | False |\n| False | False | False |\n\n**`or`** — At least one side must be `True` for the result to be `True`\n| A | B | A or B |\n|---|---|---|\n| True | True | True |\n| True | False | **True** |\n| False | True | **True** |\n| False | False | False |\n\n**`not`** — Flips a Boolean value\n| A | not A |\n|---|---|\n| True | False |\n| False | True |\n\nPrecedence: `not` is evaluated first, then `and`, then `or`."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Truth Tables in Action",
+      "content": "Run each expression and verify it matches the truth tables above.",
+      "starterCode": "# and — both must be True\nprint(True and True)      # True\nprint(True and False)     # False\nprint(False and True)     # False\n\n# or — at least one must be True\nprint(True or False)      # True\nprint(False or True)      # True\nprint(False or False)     # False\n\n# not — flips the value\nprint(not True)           # False\nprint(not False)          # True\n\n# Combined\nprint(True and not False) # True (not False → True, then True and True)",
+      "hints": [
+        "Think of `and` as a strict bouncer — BOTH conditions must pass.",
+        "Think of `or` as a lenient bouncer — ONE condition is enough.",
+        "`not` simply inverts: `not True` is `False`, `not False` is `True`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Evaluate Boolean Expressions",
+      "content": "Predict whether each expression evaluates to `True` or `False`.",
+      "starterCode": "# Replace each ___ with True or False\n\na = (2 + 2 > 4 or True)                    == ___\nb = (True and 2 + 2 >= 4)                   == ___\nc = (True and (True or False))              == ___\nd = ((False or True) and True)              == ___\ne = (True and not False)                    == ___\nf = (not (False or True))                   == ___\ng = (not False or True)                     == ___\nh = (True and True and True and True and False) == ___\ni = (False or False or False or True or False)  == ___\n\nprint(a, b, c, d, e, f, g, h, i)",
+      "solutionCode": "a = (2 + 2 > 4 or True)                    == True\nb = (True and 2 + 2 >= 4)                   == True\nc = (True and (True or False))              == True\nd = ((False or True) and True)              == True\ne = (True and not False)                    == True\nf = (not (False or True))                   == False\ng = (not False or True)                     == True\nh = (True and True and True and True and False) == False\ni = (False or False or False or True or False)  == True\n\nprint(a, b, c, d, e, f, g, h, i)",
+      "tests": [
+        {
+          "name": "All Boolean expressions correct",
+          "assertion": "_assert_test('bool_exprs', 'True True True True True True True True True' in _captured_stdout, 'One or more Boolean predictions is wrong — work through each step')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`2 + 2 > 4` is `False`, but `False or True` is `True`.",
+        "`not (False or True)` → `not True` → `False`. But `not False or True` → `True or True` → `True` (because `not` binds tighter than `or`).",
+        "With `and`, ONE `False` makes everything `False`. With `or`, ONE `True` makes everything `True`."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Real-World Conditions",
+      "content": "Boolean operators are most useful when combined with comparison operators to build conditions that match real-world logic.",
+      "starterCode": "# Real-world conditions with Boolean operators\nage = 25\nhas_id = True\n\n# Can this person enter a bar?\ncan_enter = age >= 21 and has_id\nprint('Can enter bar:', can_enter)\n\n# Is this a weekend day?\nday = 'Saturday'\nis_weekend = day == 'Saturday' or day == 'Sunday'\nprint('Is weekend:', is_weekend)\n\n# Common MISTAKE:\n# name = 'Alice'\n# name == 'Alice' or 'Bob'  # This is ALWAYS truthy!\n# Correct: name == 'Alice' or name == 'Bob'",
+      "hints": [
+        "Each side of `and`/`or` must be a complete comparison: `age >= 21 and has_id`.",
+        "The common mistake `name == 'Alice' or 'Bob'` evaluates as `(name == 'Alice') or ('Bob')`, and `'Bob'` is always truthy.",
+        "The correct form is `name == 'Alice' or name == 'Bob'`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Access Checker",
+      "content": "Write conditions to determine access level. A user gets:\n- `'admin'` access if `role == 'admin'` and `is_active == True`\n- `'viewer'` access if `role != 'admin'` and `is_active == True`\n- `'denied'` if `is_active == False`",
+      "starterCode": "role = 'admin'\nis_active = True\n\n# Write Boolean expressions (replace ___ with True or False)\nis_admin_access = ___\nis_viewer_access = ___\nis_denied = ___\n\nprint('Admin access:', is_admin_access)\nprint('Viewer access:', is_viewer_access)\nprint('Denied:', is_denied)",
+      "solutionCode": "role = 'admin'\nis_active = True\n\nis_admin_access = role == 'admin' and is_active\nis_viewer_access = role != 'admin' and is_active\nis_denied = not is_active\n\nprint('Admin access:', is_admin_access)\nprint('Viewer access:', is_viewer_access)\nprint('Denied:', is_denied)",
+      "tests": [
+        {
+          "name": "Admin access is True for admin role",
+          "assertion": "_assert_test('admin', 'Admin access: True' in _captured_stdout, 'Admin access should be True when role is admin and active')",
+          "points": 3
+        },
+        {
+          "name": "Viewer access is False for admin role",
+          "assertion": "_assert_test('viewer', 'Viewer access: False' in _captured_stdout, 'Viewer access should be False when role is admin')",
+          "points": 3
+        },
+        {
+          "name": "Denied is False when active",
+          "assertion": "_assert_test('denied', 'Denied: False' in _captured_stdout, 'Denied should be False when is_active is True')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "Admin: both conditions must be true → use `and`.",
+        "Viewer: role is NOT admin, but IS active → `role != 'admin' and is_active`.",
+        "Denied: just the opposite of active → `not is_active`."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can recall the truth tables for and, or, not" },
+        { "id": "ck2", "text": "I know that not binds tighter than and, which binds tighter than or" },
+        { "id": "ck3", "text": "I can combine comparisons with Boolean operators" },
+        { "id": "ck4", "text": "I understand why name == 'Alice' or 'Bob' is a bug" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "In your own words, what's the difference between and and or?",
+        "Can you think of a real-world rule that requires both and and or in the same expression?",
+        "Why does operator precedence matter with Boolean operators?"
+      ]
+    }
+  ]
+}

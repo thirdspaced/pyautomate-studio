@@ -1,0 +1,122 @@
+{
+  "id": "m01-l04",
+  "moduleId": "m01",
+  "title": "Your First Program",
+  "order": 4,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Write a complete Python program using print() and input()",
+    "Use comments to annotate code",
+    "Convert user input to different data types",
+    "Call built-in functions: len(), round(), abs()"
+  ],
+  "prerequisites": ["m01-l01", "m01-l02", "m01-l03"],
+  "tags": ["print", "input", "comments", "len", "round", "abs", "first_program"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Building Blocks of a Program",
+      "content": "A complete Python program combines everything you've learned so far: expressions, values, operators, variables, and function calls. Here are the key building blocks:\n\n- **`print()`** — displays output to the screen\n- **`input()`** — pauses and waits for the user to type something, then returns it as a string\n- **`len()`** — returns the length (number of characters) of a string\n- **`round()`** — rounds a number to the nearest integer\n- **`abs()`** — returns the absolute value of a number\n- **Comments** — lines starting with `#` are ignored by Python; they're notes for humans\n\nThe key thing to remember: `input()` **always** returns a string. If you need a number, you must convert it with `int()` or `float()`."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Hello, World!",
+      "content": "This is the classic first program. It greets the user by name using `print()`, `input()`, and `len()`.",
+      "starterCode": "# Hello, World! program\n# This program greets the user and tells them their name length.\n\nprint('What is your name?')\nname = input()\n\nprint('Hello, ' + name + '!')\nprint('Your name is ' + str(len(name)) + ' characters long.')",
+      "hints": [
+        "`input()` returns a string, so `name` is always a string — no conversion needed.",
+        "`len(name)` returns an integer, so we need `str()` to concatenate it with other strings.",
+        "Comments (lines starting with `#`) help explain what your code does."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Identify the Parts",
+      "content": "For each item below, label it as `'variable'`, `'function'`, or `'string'`. Replace each `___` with the correct label.",
+      "starterCode": "# Label each as 'variable', 'function', or 'string'\nlabel_a = '___'   # 'hello'\nlabel_b = '___'   # hello        (no quotes, used to store a value)\nlabel_c = '___'   # print()\nlabel_d = '___'   # 'print()'\n\nprint(label_a, label_b, label_c, label_d)",
+      "solutionCode": "label_a = 'string'     # 'hello' — text in quotes\nlabel_b = 'variable'   # hello — a name that stores a value\nlabel_c = 'function'   # print() — a callable action\nlabel_d = 'string'     # 'print()' — just text in quotes, not a real function call\n\nprint(label_a, label_b, label_c, label_d)",
+      "tests": [
+        {
+          "name": "Correct labels",
+          "assertion": "_assert_test('labels', 'string variable function string' in _captured_stdout, 'Check: quotes make something a string, parentheses make something a function call, bare names are variables')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Anything in quotes is a **string**, even if it looks like code.",
+        "A name without quotes that stores a value is a **variable**.",
+        "`print()` with parentheses and no quotes is a **function call**. `'print()'` in quotes is just a string."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Type Conversion with input()",
+      "content": "Since `input()` always returns a string, you need to convert the result when you want a number. Watch what happens with and without conversion.",
+      "starterCode": "# Without conversion — WRONG for math!\nprint('Enter a number:')\nuser_input = input()\nprint('Your input is a ' + str(type(user_input)))  # Always <class 'str'>!\n\n# With conversion — correct for math\nnumber = int(user_input)\nprint('Double your number is: ' + str(number * 2))\n\n# Useful conversion functions:\nprint(int('42'))        # str → int\nprint(float('-3.14'))   # str → float\nprint(str(100))         # int → str",
+      "hints": [
+        "`input()` returns a string even if the user types a number.",
+        "Use `int()` to convert to a whole number or `float()` for decimals.",
+        "Wrapping it: `int(input())` gets input and converts in one step."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Handy Built-in Functions",
+      "content": "Test your understanding of `len()`, `round()`, and `abs()`. Fill in the expected return value for each call.",
+      "starterCode": "# Replace each ___ with the correct value\n\na = len('Python')\nprint(a == ___)           # How many characters in 'Python'?\n\nb = round(4.9)\nprint(b == ___)           # round() returns an int when given no decimal places\n\nc = abs(-7)\nprint(c == ___)           # Absolute value of -7\n\nd = abs(5)\nprint(d == ___)           # Absolute value of 5\n\ne = len('')\nprint(e == ___)           # Length of an empty string",
+      "solutionCode": "a = len('Python')\nprint(a == 6)\n\nb = round(4.9)\nprint(b == 5)\n\nc = abs(-7)\nprint(c == 7)\n\nd = abs(5)\nprint(d == 5)\n\ne = len('')\nprint(e == 0)",
+      "tests": [
+        {
+          "name": "All function results correct",
+          "assertion": "_assert_test('builtins', _captured_stdout.strip() == 'True\\nTrue\\nTrue\\nTrue\\nTrue', 'One or more answers is incorrect')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`len('Python')` counts the characters: P-y-t-h-o-n = 6.",
+        "`round(4.9)` rounds to the nearest integer: 5. Note: `round()` returns an `int` in this case.",
+        "`abs()` removes the negative sign: `abs(-7)` is `7`, `abs(5)` is `5`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Chained Conversions",
+      "content": "What do these chained function calls evaluate to? This tests whether you can trace through nested calls from the inside out.",
+      "starterCode": "# Trace from the INSIDE OUT\n# Replace each ___ with the expected output\n\n# int(3.14) → 3, then float(3) → 3.0, then str(3.0) → '3.0'\nresult_a = str(float(int(3.14)))\nprint(result_a == '___')\n\n# str(3) → '3', then len('3') → 1\nresult_b = len(str(3))\nprint(result_b == ___)\n\n# str(3.0) → '3.0', then len('3.0') → 3\nresult_c = len(str(3.0))\nprint(result_c == ___)",
+      "solutionCode": "result_a = str(float(int(3.14)))\nprint(result_a == '3.0')\n\nresult_b = len(str(3))\nprint(result_b == 1)\n\nresult_c = len(str(3.0))\nprint(result_c == 3)",
+      "tests": [
+        {
+          "name": "Chained conversions traced correctly",
+          "assertion": "_assert_test('chained', _captured_stdout.strip() == 'True\\nTrue\\nTrue', 'Trace each function from the inside out')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Work from the innermost function outward: `int(3.14)` → `3`, then `float(3)` → `3.0`, then `str(3.0)` → `'3.0'`.",
+        "`str(3)` gives `'3'` (one character), so `len('3')` is `1`.",
+        "`str(3.0)` gives `'3.0'` (three characters: 3, dot, 0), so `len('3.0')` is `3`."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm you're ready to build your first projects:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can write a program using print() and input()" },
+        { "id": "ck2", "text": "I know that input() always returns a string" },
+        { "id": "ck3", "text": "I can use len(), round(), and abs()" },
+        { "id": "ck4", "text": "I can trace through nested function calls" },
+        { "id": "ck5", "text": "I use comments to explain my code" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Why do you think input() always returns a string instead of guessing the type?",
+        "What happens if a user types 'hello' and your code tries int(input())? How might you handle that?",
+        "What was the most confusing part of tracing nested function calls?"
+      ]
+    }
+  ]
+}

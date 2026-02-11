@@ -1,0 +1,136 @@
+{
+  "id": "m02-l04",
+  "moduleId": "m02",
+  "title": "Flow Control in Practice",
+  "order": 4,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Nest if statements inside other if statements",
+    "Combine comparison and Boolean operators in conditions",
+    "Write programs that make multi-step decisions",
+    "Avoid common flow control bugs"
+  ],
+  "prerequisites": ["m02-l01", "m02-l02", "m02-l03"],
+  "tags": ["nested_if", "compound_conditions", "practice", "flow_control"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Nested Conditions & Compound Logic",
+      "content": "You can put an `if` statement inside another `if` statement — this is called **nesting**. Each level of nesting adds more indentation.\n\n```python\nif scale == 'C':\n    if degrees >= 16 and degrees <= 38:\n        print('Safe')\n    else:\n        print('Dangerous')\n```\n\nYou can often simplify nested conditions using **compound conditions** with `and`/`or`:\n\n```python\nif scale == 'C' and 16 <= degrees <= 38:\n    print('Safe')\n```\n\nPython supports **chained comparisons**: `16 <= degrees <= 38` is the same as `degrees >= 16 and degrees <= 38`.\n\n**Common bug:** forgetting that `else` matches the **nearest** unmatched `if`. Indentation tells you which `if` an `else` belongs to."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Nested if Statements",
+      "content": "This program uses nested ifs to check temperature safety on different scales. Trace through the logic with different inputs.",
+      "starterCode": "# Temperature safety checker with nested ifs\nscale = 'C'\ndegrees = 25\n\nif scale == 'C':\n    if degrees >= 16 and degrees <= 38:\n        print('Safe')\n    else:\n        print('Dangerous')\nelif scale == 'F':\n    if degrees >= 60.8 and degrees <= 100.4:\n        print('Safe')\n    else:\n        print('Dangerous')\nelse:\n    print('Unknown scale')\n\n# Try: scale='C', degrees=50  → Dangerous\n# Try: scale='F', degrees=72  → Safe\n# Try: scale='X', degrees=25  → Unknown scale",
+      "hints": [
+        "The outer if/elif checks the scale (C or F).",
+        "The inner if/else checks if the temperature is in the safe range.",
+        "Indentation shows which `else` belongs to which `if`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Password Checker",
+      "content": "Fix this program. It has a bug: `elif` cannot come after `else`. Rearrange the statements so it works correctly.\n\nThe program should:\n- Print `'Access granted.'` if password is `'rosebud'`\n- Print `'That is the old password.'` if password is `'swordfish'`\n- Print `'Access denied.'` for anything else",
+      "starterCode": "password = 'swordfish'\n\n# This program has a bug — fix it!\nif password == 'rosebud':\n    print('Access granted.')\nelse:\n    print('Access denied.')\nelif password == 'swordfish':\n    print('That is the old password.')",
+      "solutionCode": "password = 'swordfish'\n\nif password == 'rosebud':\n    print('Access granted.')\nelif password == 'swordfish':\n    print('That is the old password.')\nelse:\n    print('Access denied.')",
+      "tests": [
+        {
+          "name": "No syntax error",
+          "assertion": "_assert_test('no_error', _error is None, 'Program still has a syntax error — remember elif must come before else')",
+          "points": 3
+        },
+        {
+          "name": "Correct output for swordfish",
+          "assertion": "_assert_test('swordfish', 'old password' in _captured_stdout, 'Should print the old password message for swordfish')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "The `else` must come LAST — after all `if` and `elif` statements.",
+        "Move `elif password == 'swordfish':` before `else:`.",
+        "Order: `if` → `elif` → `else`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Leap Year Checker",
+      "content": "Write a program that checks if a year is a leap year. The rules are:\n1. If the year is divisible by 4, it **might** be a leap year\n2. **Exception:** if also divisible by 100, it is NOT a leap year\n3. **Exception to the exception:** if also divisible by 400, it IS a leap year\n\nExamples: 2024 → leap, 1900 → not leap, 2000 → leap",
+      "starterCode": "print('Enter a year:')\nyear = int(input())\n\n# Write your leap year logic here:\n# Hint: check divisibility with the % operator\n# year % 4 == 0 means divisible by 4\n\n\n\n\nprint(str(year) + ' is a leap year: ' + str(is_leap))",
+      "solutionCode": "print('Enter a year:')\nyear = int(input())\n\nif year % 400 == 0:\n    is_leap = True\nelif year % 100 == 0:\n    is_leap = False\nelif year % 4 == 0:\n    is_leap = True\nelse:\n    is_leap = False\n\nprint(str(year) + ' is a leap year: ' + str(is_leap))",
+      "tests": [
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        },
+        {
+          "name": "Output includes leap year result",
+          "assertion": "_assert_test('has_result', 'is a leap year:' in _captured_stdout, 'Output should contain is a leap year: True or False')",
+          "points": 3
+        },
+        {
+          "name": "Uses modulo operator",
+          "assertion": "_assert_test('uses_modulo', '%' in _source_code, 'Use the % operator to check divisibility')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "Check the most specific rule first: divisible by 400 → leap year.",
+        "Then: divisible by 100 (but not 400) → NOT a leap year.",
+        "Then: divisible by 4 (but not 100) → leap year. Otherwise → not."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Single-Expression Conditions",
+      "content": "Rewrite the temperature checker using a **single compound condition** instead of nested ifs. The program should print `'Safe'` or `'Dangerous'`.",
+      "starterCode": "scale = 'C'\ndegrees = 25\n\n# Write ONE if/else using a compound condition\n# Safe if Celsius 16-38 OR Fahrenheit 60.8-100.4\nif ___:\n    print('Safe')\nelse:\n    print('Dangerous')",
+      "solutionCode": "scale = 'C'\ndegrees = 25\n\nif (scale == 'C' and 16 <= degrees <= 38) or (scale == 'F' and 60.8 <= degrees <= 100.4):\n    print('Safe')\nelse:\n    print('Dangerous')",
+      "tests": [
+        {
+          "name": "Correct output for C/25",
+          "assertion": "_assert_test('safe', 'Safe' in _captured_stdout, 'C/25 degrees should be Safe')",
+          "points": 3
+        },
+        {
+          "name": "Uses compound condition (and/or)",
+          "assertion": "_assert_test('compound', 'and' in _source_code and 'or' in _source_code, 'Should use both and + or in a single condition')",
+          "points": 5
+        },
+        {
+          "name": "No nested if statements",
+          "assertion": "_assert_test('not_nested', _source_code.count('if ') <= 2, 'Should use a single if/else, not nested ifs')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "Celsius safe range: `scale == 'C' and 16 <= degrees <= 38`",
+        "Fahrenheit safe range: `scale == 'F' and 60.8 <= degrees <= 100.4`",
+        "Combine with `or`: `(celsius_safe) or (fahrenheit_safe)`"
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Module 2 Final Check",
+      "content": "You've completed all the flow control lessons! Confirm your mastery:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can write if/elif/else chains" },
+        { "id": "ck2", "text": "I can nest if statements inside other if statements" },
+        { "id": "ck3", "text": "I can build compound conditions with and/or" },
+        { "id": "ck4", "text": "I can use chained comparisons like 16 <= x <= 38" },
+        { "id": "ck5", "text": "I know that else must always come last" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Module 2 Reflection",
+      "prompts": [
+        "When would you choose nested ifs over compound conditions?",
+        "What's the most complex real-world decision you can imagine coding?",
+        "What common mistakes will you watch out for with if statements?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "m02-portfolio-03",
+  "moduleId": "m02",
+  "title": "Portfolio: Fizz Buzz",
+  "order": 7,
+  "estimatedMinutes": 15,
+  "objectives": [
+    "Use the modulo operator to check divisibility",
+    "Apply if/elif/else to handle multiple cases",
+    "Understand why the order of conditions matters"
+  ],
+  "prerequisites": ["m02-l03", "m02-l04"],
+  "tags": ["portfolio", "fizzbuzz", "modulo", "if_elif_else"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Fizz Buzz",
+      "content": "Write a program that asks the user for an integer and prints:\n- `'Fizz Buzz'` if the number is divisible by both 3 and 5\n- `'Fizz'` if divisible by 3 only\n- `'Buzz'` if divisible by 5 only\n- The number itself otherwise\n\n**Examples:**\n```\nEnter an integer: 15 → Fizz Buzz\nEnter an integer: 9  → Fizz\nEnter an integer: 10 → Buzz\nEnter an integer: 7  → 7\n```\n\n**Key insight:** you must check the \"divisible by both\" case FIRST, because a number divisible by both 3 and 5 would also match \"divisible by 3\".",
+      "starterCode": "print('Enter an integer:')\nnumber = int(input())\n\n# Check divisibility and print the result\n# Remember: check \"both\" FIRST!\n",
+      "solutionCode": "print('Enter an integer:')\nnumber = int(input())\n\nif number % 3 == 0 and number % 5 == 0:\n    print('Fizz Buzz')\nelif number % 3 == 0:\n    print('Fizz')\nelif number % 5 == 0:\n    print('Buzz')\nelse:\n    print(number)",
+      "tests": [
+        {
+          "name": "Uses modulo operator",
+          "assertion": "_assert_test('modulo', '%' in _source_code, 'Use the % operator to check divisibility')",
+          "points": 3
+        },
+        {
+          "name": "Uses if/elif/else structure",
+          "assertion": "_assert_test('structure', 'if ' in _source_code and 'elif' in _source_code and 'else' in _source_code, 'Must use if/elif/else')",
+          "points": 3
+        },
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        },
+        {
+          "name": "Checks both 3 and 5 first",
+          "assertion": "_assert_test('both_first', '% 3' in _source_code.split('elif')[0] and '% 5' in _source_code.split('elif')[0], 'The first condition should check divisibility by both 3 AND 5')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`number % 3 == 0` checks if a number is divisible by 3.",
+        "Check `number % 3 == 0 and number % 5 == 0` FIRST, because 15 would otherwise match the `% 3` check.",
+        "Use `print(number)` in the else block to print the number itself."
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["modulo operator", "if/elif/else", "int() conversion", "input()"],
+        "acceptanceTests": [
+          "Program takes a numeric input",
+          "Uses modulo to check divisibility",
+          "Has at least 3 different output categories",
+          "Order of conditions matters for correctness"
+        ],
+        "exampleRemixes": [
+          "Classify numbers as even/odd and positive/negative",
+          "Day-of-week checker: print Weekday/Weekend based on day number",
+          "Coin counter: given a number of cents, determine quarters/dimes/nickels/pennies"
+        ]
+      }
+    }
+  ]
+}

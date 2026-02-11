@@ -1,0 +1,64 @@
+{
+  "id": "m02-portfolio-01",
+  "moduleId": "m02",
+  "title": "Portfolio: Fix the Safe Temperature Program",
+  "order": 5,
+  "estimatedMinutes": 15,
+  "objectives": [
+    "Debug a program with multiple errors",
+    "Apply correct comparison and Boolean operators",
+    "Use nested if/elif/else to handle multiple scales"
+  ],
+  "prerequisites": ["m02-l03", "m02-l04"],
+  "tags": ["portfolio", "debugging", "temperature", "nested_if"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Fix the Safe Temperature Program",
+      "content": "The following program should check if a temperature is safe. It asks the user for a scale (C or F) and degrees. Safe ranges are:\n- Celsius: 16 to 38 (inclusive)\n- Fahrenheit: 60.8 to 100.4 (inclusive)\n\n**This program has several bugs.** Find and fix them all so it produces the correct output.\n\nExample:\n```\nEnter C or F to indicate Celsius or Fahrenheit:\nC\nEnter the number of degrees:\n25\nSafe\n```",
+      "starterCode": "# This program has bugs — fix them!\nprint('Enter C or F to indicate Celsius or Fahrenheit:')\nscale = input()\nprint('Enter the number of degrees:')\ndegrees = input()\n\nif scale = 'C':\n    if degrees >= 16 or degrees <= 38:\n        print('Safe')\n    else:\n        print('Dangerous')\nelif scale = 'F':\n    if degrees >= 60.8 or degrees <= 100.4:\n        print('Safe')\n    else:\n        print('Dangerous')",
+      "solutionCode": "print('Enter C or F to indicate Celsius or Fahrenheit:')\nscale = input()\nprint('Enter the number of degrees:')\ndegrees = int(input())\n\nif scale == 'C':\n    if degrees >= 16 and degrees <= 38:\n        print('Safe')\n    else:\n        print('Dangerous')\nelif scale == 'F':\n    if degrees >= 60.8 and degrees <= 100.4:\n        print('Safe')\n    else:\n        print('Dangerous')",
+      "tests": [
+        {
+          "name": "No syntax errors",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program still has errors — check = vs == and input conversion')",
+          "points": 3
+        },
+        {
+          "name": "Uses == for comparison",
+          "assertion": "_assert_test('uses_equals', '==' in _source_code, 'Use == for comparison, not =')",
+          "points": 3
+        },
+        {
+          "name": "Uses and (not or) for range checks",
+          "assertion": "_assert_test('uses_and', 'and' in _source_code, 'Range check needs and: degrees >= 16 and degrees <= 38')",
+          "points": 4
+        },
+        {
+          "name": "Converts input to number",
+          "assertion": "_assert_test('converts', 'int(' in _source_code or 'float(' in _source_code, 'Must convert input to int or float for numeric comparison')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "Bug 1: `scale = 'C'` uses `=` (assignment) — should be `==` (comparison).",
+        "Bug 2: `degrees` is a string from `input()` — need `int(input())` or `float(input())`.",
+        "Bug 3: `degrees >= 16 or degrees <= 38` is always True! Use `and` instead of `or`."
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["if/elif/else", "comparison operators", "and/or", "input()", "int() conversion"],
+        "acceptanceTests": [
+          "Program takes user input for a category and a value",
+          "Program uses nested or compound conditions to check range",
+          "Program prints a verdict based on whether value is in range"
+        ],
+        "exampleRemixes": [
+          "BMI calculator that checks if weight is underweight/normal/overweight",
+          "Grade checker that validates scores are in range (0-100) before grading",
+          "Speed checker that adjusts limits based on road type (highway vs city)"
+        ]
+      }
+    }
+  ]
+}

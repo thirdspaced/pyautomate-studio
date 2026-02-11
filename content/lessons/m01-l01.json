@@ -1,0 +1,132 @@
+{
+  "id": "m01-l01",
+  "moduleId": "m01",
+  "title": "Expressions & the Interactive Shell",
+  "order": 1,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Identify expressions, values, and operators in Python code",
+    "Use the interactive shell to evaluate expressions",
+    "Understand the seven arithmetic operators and their precedence",
+    "Distinguish between int, float, and string data types"
+  ],
+  "prerequisites": [],
+  "tags": ["expressions", "operators", "data_types", "interactive_shell"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "What Are Expressions?",
+      "content": "An expression is the most basic building block in Python. It combines **values** (like `2` or `'hello'`) with **operators** (like `+` or `*`) and always reduces down to a single value.\n\nPython has seven arithmetic operators:\n\n| Operator | Name | Example |\n|---|---|---|\n| `+` | Addition | `2 + 3` → `5` |\n| `-` | Subtraction | `5 - 2` → `3` |\n| `*` | Multiplication | `3 * 4` → `12` |\n| `/` | Division | `7 / 2` → `3.5` |\n| `**` | Exponentiation | `2 ** 3` → `8` |\n| `//` | Floor division | `7 // 2` → `3` |\n| `%` | Modulo (remainder) | `7 % 2` → `1` |\n\nPython follows standard math precedence: parentheses first, then `**`, then `*`, `/`, `//`, `%`, and finally `+` and `-`."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Your First Expressions",
+      "content": "Type each expression below into the editor and run it. Predict the output before you hit Run!",
+      "starterCode": "# Try each expression — predict before you run!\nprint(2 + 3)\nprint(10 - 4)\nprint(3 * 7)\nprint(22 / 7)\nprint(2 ** 10)\nprint(17 // 5)\nprint(17 % 5)",
+      "hints": [
+        "The `/` operator always returns a float, even if the result is a whole number.",
+        "`//` (floor division) drops the decimal part — it rounds DOWN to the nearest integer.",
+        "`%` (modulo) gives the remainder. Think: 17 ÷ 5 = 3 remainder 2."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Operator Matching",
+      "content": "Complete the code so each `print` statement outputs `True`. Replace each `___` with the correct operator.",
+      "starterCode": "# Replace each ___ with the correct operator: + - * / ** // %\n\nprint(8 ___ 2 == 16)    # multiplication\nprint(15 ___ 4 == 3)    # floor division\nprint(2 ___ 8 == 256)   # exponentiation\nprint(17 ___ 5 == 2)    # modulo (remainder)\nprint(10 ___ 3 == 7)    # subtraction",
+      "solutionCode": "print(8 * 2 == 16)\nprint(15 // 4 == 3)\nprint(2 ** 8 == 256)\nprint(17 % 5 == 2)\nprint(10 - 3 == 7)",
+      "tests": [
+        {
+          "name": "All five expressions are True",
+          "assertion": "_assert_test('all_true', all([\n    8 * 2 == 16,\n    15 // 4 == 3,\n    2 ** 8 == 256,\n    17 % 5 == 2,\n    10 - 3 == 7\n]), 'One or more operator expressions is incorrect')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Multiplication uses `*`, not `x`.",
+        "Floor division `//` drops the decimal — `15 / 4` is `3.75`, but `15 // 4` is `3`.",
+        "Exponentiation is `**`, which means 'raised to the power of'."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Order of Operations",
+      "content": "Python follows the same precedence rules as math class. Parentheses can override the default order. Run these examples and see if they match your predictions.",
+      "starterCode": "# Order of operations\nprint((4 + 5) * 6)      # Parentheses first\nprint(4 + 5 * 6)        # Without parens — what changes?\nprint(2 ** 3 + 1)        # Exponentiation before addition\nprint(1 + 2 ** 3)        # Same rule, different order\nprint((1 + 2) ** 3)     # Parens override precedence",
+      "hints": [
+        "Without parentheses, `**` is evaluated before `+`, `-`, `*`, `/`.",
+        "`*` and `/` bind tighter than `+` and `-`, just like in math.",
+        "When in doubt, add parentheses to make your intent clear!"
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Precedence Predictions",
+      "content": "For each expression, fill in the expected result. Replace each `___` with the correct number.",
+      "starterCode": "# Predict the result of each expression\n# Replace ___ with the correct number\n\nresult_a = 2 + 3 * 4\nprint(result_a == ___)       # What is 2 + 3 * 4?\n\nresult_b = (2 + 3) * 4\nprint(result_b == ___)       # What is (2 + 3) * 4?\n\nresult_c = 10 - 2 ** 3\nprint(result_c == ___)       # What is 10 - 2**3?\n\nresult_d = 20 // 3 % 4\nprint(result_d == ___)       # What is 20 // 3 % 4?",
+      "solutionCode": "result_a = 2 + 3 * 4\nprint(result_a == 14)       # 3*4=12, then 2+12=14\n\nresult_b = (2 + 3) * 4\nprint(result_b == 20)       # 2+3=5, then 5*4=20\n\nresult_c = 10 - 2 ** 3\nprint(result_c == 2)        # 2**3=8, then 10-8=2\n\nresult_d = 20 // 3 % 4\nprint(result_d == 2)        # 20//3=6, then 6%4=2",
+      "tests": [
+        {
+          "name": "All precedence predictions correct",
+          "assertion": "_assert_test('precedence', all([\n    2 + 3 * 4 == 14,\n    (2 + 3) * 4 == 20,\n    10 - 2 ** 3 == 2,\n    20 // 3 % 4 == 2\n]) and 'True\\nTrue\\nTrue\\nTrue' in _captured_stdout, 'One or more predictions is incorrect — check the order of operations')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Multiplication (`*`) happens before addition (`+`), so `2 + 3 * 4` = `2 + 12` = `14`.",
+        "Exponentiation (`**`) happens before subtraction, so `10 - 2 ** 3` = `10 - 8` = `2`.",
+        "`//` and `%` have the same precedence and are evaluated left to right: `20 // 3` = `6`, then `6 % 4` = `2`."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 3: Data Types — int, float, string",
+      "content": "Every value has a **data type**. Use the `type()` function to discover what type a value is.\n\n- **int**: whole numbers like `42` or `-7`\n- **float**: decimal numbers like `3.14` or `-0.5`\n- **str**: text in quotes like `'hello'` or `\"world\"`",
+      "starterCode": "# Explore data types\nprint(type(42))        # What type is this?\nprint(type(3.14))      # And this?\nprint(type('hello'))   # And this?\nprint(type('42'))      # Careful — is '42' an int or str?\nprint(type(True))      # Bonus: what type is True?",
+      "hints": [
+        "Anything in quotes is a string, even if it looks like a number.",
+        "`True` and `False` are a special type called `bool` (Boolean)."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Type Detective",
+      "content": "For each value below, add a comment labeling its type as `int`, `float`, or `str`. Then write a `print()` statement that converts the string `'99'` into an integer and adds `1` to it.",
+      "starterCode": "# Label each value's type in the comment:\na = 10        # type: ___\nb = 10.0      # type: ___\nc = '10'      # type: ___\nd = -3.5      # type: ___\ne = 'hello'   # type: ___\n\n# Convert the string '99' to an integer and add 1. Print the result.\n# Your code here:\n",
+      "solutionCode": "a = 10        # type: int\nb = 10.0      # type: float\nc = '10'      # type: str\nd = -3.5      # type: float\ne = 'hello'   # type: str\n\nprint(int('99') + 1)  # Output: 100",
+      "tests": [
+        {
+          "name": "String-to-int conversion prints 100",
+          "assertion": "_assert_test('converts_and_adds', '100' in _captured_stdout, 'Expected output to contain 100')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Remember: `int()` converts a value to an integer, `float()` to a float, `str()` to a string.",
+        "You need `int('99')` first, then `+ 1`, then wrap in `print()`.",
+        "The answer is `print(int('99') + 1)` — this outputs `100`."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Before moving on, confirm you understand these concepts:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can identify the 7 arithmetic operators" },
+        { "id": "ck2", "text": "I know the difference between `/` and `//`" },
+        { "id": "ck3", "text": "I can predict the result using order of operations" },
+        { "id": "ck4", "text": "I can distinguish int, float, and str values" },
+        { "id": "ck5", "text": "I know how to convert between types with int(), float(), str()" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "What surprised you most about how Python handles division?",
+        "When would you use `//` (floor division) instead of `/` in a real program?",
+        "Is there anything you want to remember for later lessons?"
+      ]
+    }
+  ]
+}

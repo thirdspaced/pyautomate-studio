@@ -1,0 +1,131 @@
+{
+  "id": "m02-l03",
+  "moduleId": "m02",
+  "title": "Blocks, Indentation & if/elif/else",
+  "order": 3,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Identify code blocks by their indentation level",
+    "Write if statements with conditions and clauses",
+    "Use elif for multiple branches and else as a fallback",
+    "Understand that else always comes last"
+  ],
+  "prerequisites": ["m02-l01", "m02-l02"],
+  "tags": ["if", "elif", "else", "indentation", "blocks", "flow_control"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Blocks and Flow Control",
+      "content": "Python uses **indentation** (spaces at the start of a line) to group code into **blocks**. A block starts when indentation increases after a statement ending with `:`, and ends when indentation returns to the previous level.\n\n```python\nif condition:     # Flow control statement\n    do_this()     # ← This is the \"if block\"\n    and_this()    # ← Still inside the block\ndo_always()       # ← Back to normal — runs regardless\n```\n\n**Three flow control statements:**\n- `if condition:` — runs the block only when condition is `True`\n- `elif condition:` — checked only when previous `if`/`elif` was `False`\n- `else:` — runs when ALL previous conditions were `False`\n\n**Rules:**\n- You can have **zero or more** `elif` statements after an `if`\n- `else` is optional, but if present it must be **last**\n- You cannot put `elif` after `else`\n- Every `if`, `elif`, and `else` must end with a colon `:`"
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Simple if/else",
+      "content": "Run this program with different values for `name` to see how the if/else statement works.",
+      "starterCode": "# Try changing name to see different outputs\nname = 'Alice'\n\nif name == 'Alice':\n    print('Hello, Alice!')\nelse:\n    print('Hello, stranger!')\n\nprint('Done.')  # Always runs — it's outside the if/else block",
+      "hints": [
+        "The `if` block runs when the condition is `True`.",
+        "The `else` block runs when the condition is `False`.",
+        "Code after the if/else (at the same indent level) always runs."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Block Detective",
+      "content": "Look at this program and answer the questions by filling in the blanks.",
+      "starterCode": "# Analyze this program's blocks:\n#\n# Line 1: name = 'Alitza'\n# Line 2: if name == 'Dolly':\n# Line 3:     print('Hello, Dolly!')\n# Line 4: print('Done')\n\n# How many blocks are in this program?\nnum_blocks = ___\n\n# What line does the first block begin on?\nblock_start = ___\n\n# What line does the first block end on?\nblock_end = ___\n\n# Does 'Hello, Dolly!' get printed? (True/False)\nhello_prints = ___\n\n# Does 'Done' get printed? (True/False)\ndone_prints = ___\n\nprint(num_blocks, block_start, block_end, hello_prints, done_prints)",
+      "solutionCode": "num_blocks = 1\nblock_start = 3\nblock_end = 3\nhello_prints = False\ndone_prints = True\n\nprint(num_blocks, block_start, block_end, hello_prints, done_prints)",
+      "tests": [
+        {
+          "name": "Correct block analysis",
+          "assertion": "_assert_test('blocks', '1 3 3 False True' in _captured_stdout, 'There is 1 block (line 3 only). Dolly does not print because name is Alitza. Done always prints.')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "The indented code after `if` forms one block: just line 3.",
+        "Since `name` is `'Alitza'`, not `'Dolly'`, the if condition is `False`.",
+        "`print('Done')` is not indented — it's outside the block and always runs."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: if/elif/else Chains",
+      "content": "When you need multiple branches, use `elif`. Python checks each condition in order and runs only the first one that's `True`.",
+      "starterCode": "# Grade calculator\nscore = 85\n\nif score >= 90:\n    grade = 'A'\nelif score >= 80:\n    grade = 'B'\nelif score >= 70:\n    grade = 'C'\nelif score >= 60:\n    grade = 'D'\nelse:\n    grade = 'F'\n\nprint('Score:', score, '→ Grade:', grade)\n# Try changing score to 95, 72, 55, etc.",
+      "hints": [
+        "Python checks conditions top to bottom and stops at the FIRST True one.",
+        "Score 85: `>= 90` is False, `>= 80` is True → grade is 'B'. The remaining elif/else are skipped.",
+        "`else` catches everything that didn't match any condition above it."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Valid or Invalid?",
+      "content": "For each if-related statement, say whether it's `True` (valid) or `False` (invalid), assuming `eggs = 12`.",
+      "starterCode": "eggs = 12\n\n# Are these valid statements? True or False\na = ___   # if eggs = 12:      (uses = instead of ==)\nb = ___   # if eggs > 12       (missing colon)\nc = ___   # if:                (missing condition)\nd = ___   # if eggs == 12:     (correct!)\ne = ___   # if eggs != 'hello': (correct — but always True here)\n\n# After an if block:\nf = ___   # else:              (valid else)\ng = ___   # else if eggs != 12: (NOT valid Python — use elif)\nh = ___   # elif:              (missing condition)\ni = ___   # elif eggs != 12:   (valid elif)\n\nprint(a, b, c, d, e, f, g, h, i)",
+      "solutionCode": "eggs = 12\n\na = False   # if eggs = 12: — uses assignment = instead of ==\nb = False   # if eggs > 12 — missing colon\nc = False   # if: — missing condition\nd = True    # if eggs == 12: — correct\ne = True    # if eggs != 'hello': — valid (condition is True)\n\nf = True    # else: — valid\ng = False   # else if — not valid Python, use elif\nh = False   # elif: — missing condition\ni = True    # elif eggs != 12: — valid\n\nprint(a, b, c, d, e, f, g, h, i)",
+      "tests": [
+        {
+          "name": "All validity checks correct",
+          "assertion": "_assert_test('valid_checks', 'False False False True True True False False True' in _captured_stdout, 'Check: = vs ==, missing colons, missing conditions, else if vs elif')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`if eggs = 12:` uses assignment `=` — should be `==`.",
+        "Every `if`, `elif`, `else` must end with `:`. And `if`/`elif` need a condition.",
+        "Python uses `elif`, not `else if` (that's a different language!)."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Age Category",
+      "content": "Write an if/elif/else chain that categorizes a person's age:\n- Under 13: `'child'`\n- 13–17: `'teenager'`\n- 18–64: `'adult'`\n- 65 and over: `'senior'`",
+      "starterCode": "print('Enter your age:')\nage = int(input())\n\n# Write your if/elif/else chain here:\n\n\n\n\nprint('Category: ' + category)",
+      "solutionCode": "print('Enter your age:')\nage = int(input())\n\nif age < 13:\n    category = 'child'\nelif age <= 17:\n    category = 'teenager'\nelif age <= 64:\n    category = 'adult'\nelse:\n    category = 'senior'\n\nprint('Category: ' + category)",
+      "tests": [
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        },
+        {
+          "name": "Prints a category",
+          "assertion": "_assert_test('has_category', 'Category: ' in _captured_stdout, 'Output should contain Category: followed by the age group')",
+          "points": 3
+        },
+        {
+          "name": "Uses if/elif/else",
+          "assertion": "_assert_test('uses_elif', 'elif' in _source_code and 'else' in _source_code, 'Must use elif and else statements')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "Start with the smallest range: `if age < 13:`",
+        "After excluding under-13, check `elif age <= 17:` for teenagers.",
+        "`else` catches everyone 65+ since we've already excluded all younger ages."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can identify blocks by indentation" },
+        { "id": "ck2", "text": "I can write if/elif/else chains" },
+        { "id": "ck3", "text": "I know that else must come last" },
+        { "id": "ck4", "text": "I understand that Python checks conditions top-to-bottom" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Why does the order of elif conditions matter?",
+        "What happens if you accidentally put else before elif?",
+        "Can you think of a real-world decision that needs more than 3 branches?"
+      ]
+    }
+  ]
+}

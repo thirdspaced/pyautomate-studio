@@ -1,0 +1,65 @@
+{
+  "id": "m03-portfolio-01",
+  "moduleId": "m03",
+  "title": "Portfolio: Tree Printer",
+  "order": 4,
+  "estimatedMinutes": 20,
+  "objectives": [
+    "Use for loops to create multi-line text patterns",
+    "Apply string replication to build rows of varying width",
+    "Convert a visual pattern into loop logic"
+  ],
+  "prerequisites": ["m03-l02"],
+  "tags": ["portfolio", "for_loop", "string_replication", "patterns"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Tree Printer",
+      "content": "Print a triangular pine tree where the user chooses the size. The tree should have rows of `^` characters (increasing in width) and a trunk of two `#` characters.\n\n**Example for size 5:**\n```\nEnter the tree size: 5\n    ^\n   ^^^\n  ^^^^^\n ^^^^^^^\n^^^^^^^^^\n    #\n    #\n```\n\n**Pattern analysis for size 5:**\n- Row 1: 4 spaces, 1 branch → `' ' * 4 + '^' * 1`\n- Row 2: 3 spaces, 3 branches → `' ' * 3 + '^' * 3`\n- Row n: `(size - n)` spaces, `(n * 2 - 1)` branches\n\n**Trunk:** always 2 rows, centered with `(size - 1)` spaces before `#`.",
+      "starterCode": "print('Enter the tree size:')\nsize = int(input())\n\n# Print the tree branches\nfor row_num in range(1, size + 1):\n    spaces = ' ' * ___\n    branches = '^' * ___\n    print(spaces + branches)\n\n# Print the trunk (2 rows)\ntrunk_spaces = ' ' * ___\nprint(trunk_spaces + '#')\nprint(trunk_spaces + '#')",
+      "solutionCode": "print('Enter the tree size:')\nsize = int(input())\n\nfor row_num in range(1, size + 1):\n    spaces = ' ' * (size - row_num)\n    branches = '^' * (row_num * 2 - 1)\n    print(spaces + branches)\n\ntrunk_spaces = ' ' * (size - 1)\nprint(trunk_spaces + '#')\nprint(trunk_spaces + '#')",
+      "tests": [
+        {
+          "name": "Uses for loop",
+          "assertion": "_assert_test('uses_for', 'for ' in _source_code and 'range' in _source_code, 'Must use a for loop with range()')",
+          "points": 3
+        },
+        {
+          "name": "Uses string replication",
+          "assertion": "_assert_test('replication', \"'^' *\" in _source_code or \"'^'*\" in _source_code, 'Must use string replication for branches')",
+          "points": 3
+        },
+        {
+          "name": "Prints trunk",
+          "assertion": "_assert_test('trunk', '#' in _captured_stdout, 'Tree should have a trunk made of # characters')",
+          "points": 2
+        },
+        {
+          "name": "First branch row is single ^",
+          "assertion": "_assert_test('top', any(line.strip() == '^' for line in _captured_stdout.split('\\n')), 'The top of the tree should be a single ^ character')",
+          "points": 4
+        }
+      ],
+      "hints": [
+        "Spaces per row: `size - row_num`. For row 1 of size 5: `5 - 1 = 4` spaces.",
+        "Branches per row: `row_num * 2 - 1`. For row 1: `1 * 2 - 1 = 1` branch.",
+        "Trunk centering: `size - 1` spaces before each `#`."
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["for loops", "range()", "string replication", "input()", "int()"],
+        "acceptanceTests": [
+          "Takes a size input from user",
+          "Uses a for loop to generate rows",
+          "Each row has different width based on position",
+          "Produces a recognizable visual pattern"
+        ],
+        "exampleRemixes": [
+          "Print a diamond shape (grows then shrinks)",
+          "Print a right-aligned staircase pattern",
+          "Print a multiplication table with aligned columns"
+        ]
+      }
+    }
+  ]
+}

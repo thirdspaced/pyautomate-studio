@@ -1,0 +1,64 @@
+{
+  "id": "m01-portfolio-02",
+  "moduleId": "m01",
+  "title": "Portfolio: Perimeter & Area Calculator",
+  "order": 7,
+  "estimatedMinutes": 15,
+  "objectives": [
+    "Accept multiple numeric inputs from the user",
+    "Perform arithmetic calculations with user-provided values",
+    "Display labeled results with print()"
+  ],
+  "prerequisites": ["m01-l01", "m01-l03", "m01-l04"],
+  "tags": ["portfolio", "input", "arithmetic", "calculator"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Perimeter & Area Calculator",
+      "content": "Write a program that asks the user for the width and length of a rectangle, then calculates and prints both the perimeter and area.\n\n**Expected output:**\n```\nEnter the width for the rectangle:\n9\nEnter the length for the rectangle:\n5\nArea of the rectangle:\n45\nPerimeter of the rectangle:\n28\n```\n\n**Requirements:**\n- Use `input()` to get width and length from the user\n- Convert input strings to integers with `int()`\n- Calculate area (width × length) and perimeter (2 × width + 2 × length)\n- Print results with descriptive labels",
+      "starterCode": "# Perimeter & Area Calculator\n# Ask the user for dimensions and calculate area + perimeter.\n\n# Step 1: Get input\nprint('Enter the width for the rectangle:')\nwidth = ___  # Get input and convert to int\n\nprint('Enter the length for the rectangle:')\nlength = ___  # Get input and convert to int\n\n# Step 2: Calculate\narea = ___\nperimeter = ___\n\n# Step 3: Display results\nprint('Area of the rectangle:')\nprint(area)\nprint('Perimeter of the rectangle:')\nprint(perimeter)",
+      "solutionCode": "print('Enter the width for the rectangle:')\nwidth = int(input())\n\nprint('Enter the length for the rectangle:')\nlength = int(input())\n\narea = width * length\nperimeter = 2 * width + 2 * length\n\nprint('Area of the rectangle:')\nprint(area)\nprint('Perimeter of the rectangle:')\nprint(perimeter)",
+      "tests": [
+        {
+          "name": "Correct area calculation",
+          "assertion": "_assert_test('area', width * length == area, f'Expected area={width*length}, got {area}')",
+          "points": 5
+        },
+        {
+          "name": "Correct perimeter calculation",
+          "assertion": "_assert_test('perimeter', 2*width + 2*length == perimeter, f'Expected perimeter={2*width+2*length}, got {perimeter}')",
+          "points": 5
+        },
+        {
+          "name": "Uses input() function",
+          "assertion": "_assert_test('uses_input', 'input()' in _source_code, 'Must use input() to get user input')",
+          "points": 3
+        },
+        {
+          "name": "Uses int() conversion",
+          "assertion": "_assert_test('uses_int', 'int(' in _source_code, 'Must convert input to integer with int()')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "To get input and convert it: `width = int(input())`",
+        "Area = width × length → `area = width * length`",
+        "Perimeter = 2w + 2l → `perimeter = 2 * width + 2 * length`"
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["input()", "int() conversion", "arithmetic operators", "print()"],
+        "acceptanceTests": [
+          "Program takes at least 2 numeric inputs from user",
+          "Program performs at least 2 different calculations",
+          "Program prints labeled results"
+        ],
+        "exampleRemixes": [
+          "Calculate tip + total for a restaurant bill",
+          "Convert between Celsius and Fahrenheit with user input",
+          "Calculate batting average from hits and at-bats"
+        ]
+      }
+    }
+  ]
+}

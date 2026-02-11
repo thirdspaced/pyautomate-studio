@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* ─── Custom Theme ──────────────────────────────────────── */
+:root {
+  --bg-primary: #0f1117;
+  --bg-secondary: #1a1d27;
+  --bg-card: #1e2130;
+  --bg-hover: #262a3a;
+  --border: #2e3348;
+  --text-primary: #e8eaf0;
+  --text-secondary: #9ca3b8;
+  --text-muted: #6b7394;
+  --accent-blue: #4f8ff7;
+  --accent-green: #34d399;
+  --accent-yellow: #fbbf24;
+  --accent-red: #f87171;
+  --accent-purple: #a78bfa;
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── CodeMirror overrides ──────────────────────────────── */
+.cm-editor { height: 100% !important; }
+.cm-scroller { overflow: auto !important; }
+.cm-editor .cm-gutters {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+}
+
+/* ─── Markdown-like content ─────────────────────────────── */
+.lesson-content h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+.lesson-content p { margin-bottom: 0.75rem; line-height: 1.7; color: var(--text-secondary); }
+.lesson-content code { background: var(--bg-hover); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem; color: var(--accent-blue); }
+.lesson-content pre { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 0.75rem 0; overflow-x: auto; }
+.lesson-content pre code { background: none; padding: 0; color: var(--text-primary); }
+.lesson-content ul, .lesson-content ol { margin-left: 1.25rem; margin-bottom: 0.75rem; }
+.lesson-content li { margin-bottom: 0.25rem; color: var(--text-secondary); line-height: 1.6; }
+.lesson-content table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; }
+.lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; font-size: 0.875rem; }
+.lesson-content th { background: var(--bg-hover); color: var(--text-primary); font-weight: 600; }
+.lesson-content td { color: var(--text-secondary); }
+.lesson-content strong { color: var(--text-primary); }

@@ -1,0 +1,142 @@
+{
+  "id": "m01-l05",
+  "moduleId": "m01",
+  "title": "Putting It All Together",
+  "order": 5,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Combine all Chapter 1 skills into complete programs",
+    "Read and understand common Python error messages",
+    "Debug simple programs by tracing variable values",
+    "Prepare for the Module 1 portfolio projects"
+  ],
+  "prerequisites": ["m01-l01", "m01-l02", "m01-l03", "m01-l04"],
+  "tags": ["review", "errors", "debugging", "complete_programs"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Reading Error Messages",
+      "content": "Errors are not failures — they're Python giving you clues about what went wrong. The three most common errors for beginners are:\n\n**`SyntaxError`** — Python can't understand your code's structure\n- Missing closing quote: `'Forgot the closing quote`\n- Mismatched parentheses: `((3 + 1 * 2)`\n\n**`NameError`** — Python doesn't recognize a name\n- Variable not defined: `print(age)` when `age` was never created\n- Forgot quotes: `name = Jack` instead of `name = 'Jack'`\n\n**`TypeError`** — You used an operator with incompatible types\n- `'Hello' + 3` → can't concatenate `str` and `int`\n- `'Hello' * 3.0` → can't multiply string by `float`\n\nWhen you see an error, read it from the **bottom up**. The last line tells you the error type and message. The lines above show you exactly where it happened."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Error Detective",
+      "content": "Each of these code blocks has a bug. Uncomment one at a time, read the error, and think about how to fix it. Then check the commented fix.",
+      "starterCode": "# Bug 1: NameError\n# nephew = Jack       # Fix: nephew = 'Jack'\n\n# Bug 2: TypeError\n# age = 25\n# print('I am ' + age + ' years old')  # Fix: str(age)\n\n# Bug 3: SyntaxError\n# message = 'It's a beautiful day'  # Fix: use double quotes or escape\n\n# Bug 4: TypeError\n# print('Ha' * 3.0)   # Fix: int(3.0) or just use 3\n\n# Bug 5: ValueError\n# number = int('hello')  # Fix: can only convert numeric strings\n\n# Uncomment bugs ONE AT A TIME to see each error message.\n# Then apply the fix.\nprint('All bugs squashed!')",
+      "hints": [
+        "Bug 1: `Jack` without quotes is treated as a variable name, but no variable called `Jack` exists.",
+        "Bug 2: You can't use `+` between a string and an integer. Use `str(age)` to convert.",
+        "Bug 3: The apostrophe in `It's` closes the string early. Use `\"It's a beautiful day\"` instead."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Fix the Program",
+      "content": "This program has **4 bugs**. Find and fix all of them so it runs without errors and produces the correct output.\n\nExpected output:\n```\nWhat is your name?\n[user types: Alice]\nWhat is your age?\n[user types: 30]\nHello, Alice! You will be 31 next year.\n```",
+      "starterCode": "# This program has 4 bugs — find and fix them!\n\nprint('What is your name?')\nname = input()\n\nprint(What is your age?)\nage = input()\n\nnext_year = age + 1\n\nprint('Hello, ' + Name + '! You will be ' + next_year + ' next year.')",
+      "solutionCode": "print('What is your name?')\nname = input()\n\nprint('What is your age?')\nage = input()\n\nnext_year = int(age) + 1\n\nprint('Hello, ' + name + '! You will be ' + str(next_year) + ' next year.')",
+      "tests": [
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Your code still has errors — check for missing quotes, wrong variable names, and type conversions')",
+          "points": 3
+        },
+        {
+          "name": "Correct output format",
+          "assertion": "_assert_test('output', 'Hello, ' in _captured_stdout and 'next year.' in _captured_stdout, 'Output should contain the greeting with name and next year age')",
+          "points": 5
+        },
+        {
+          "name": "Uses int() for age calculation",
+          "assertion": "_assert_test('int_conversion', 'int(' in _source_code, 'Must convert age string to int before adding 1')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "Bug 1: `print(What is your age?)` is missing quotes around the string.",
+        "Bug 2: `age + 1` fails because `age` is a string from `input()`. Use `int(age) + 1`.",
+        "Bug 3: `Name` should be `name` (case-sensitive!). Bug 4: `next_year` is an int — use `str(next_year)` to concatenate."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Mad Libs Generator",
+      "content": "Create a Mad Libs program that asks the user for a noun, verb, and adjective, then prints a silly sentence using those words.\n\nExample output:\n```\nEnter a noun:\ncat\nEnter a verb:\njumped\nEnter an adjective:\nsparkly\nThe sparkly cat jumped over the moon.\n```",
+      "starterCode": "# Mad Libs Generator\n# Ask for 3 words and build a silly sentence\n\nprint('Enter a noun:')\nnoun = ___\n\nprint('Enter a verb:')\nverb = ___\n\nprint('Enter an adjective:')\nadjective = ___\n\n# Build and print the sentence\nsentence = 'The ' + ___ + ' ' + ___ + ' ' + ___ + ' over the moon.'\nprint(sentence)",
+      "solutionCode": "print('Enter a noun:')\nnoun = input()\n\nprint('Enter a verb:')\nverb = input()\n\nprint('Enter an adjective:')\nadjective = input()\n\nsentence = 'The ' + adjective + ' ' + noun + ' ' + verb + ' over the moon.'\nprint(sentence)",
+      "tests": [
+        {
+          "name": "Uses input() three times",
+          "assertion": "_assert_test('three_inputs', _source_code.count('input()') >= 3, 'Must call input() at least 3 times')",
+          "points": 3
+        },
+        {
+          "name": "Builds sentence with concatenation",
+          "assertion": "_assert_test('sentence_built', 'over the moon' in _captured_stdout, 'Sentence should end with over the moon.')",
+          "points": 3
+        },
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "Use `input()` to get each word from the user.",
+        "Concatenate the words with `+`, adding spaces between them.",
+        "The order is: `adjective`, then `noun`, then `verb`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Quick Math Quiz",
+      "content": "Write a program that generates a simple math problem, asks the user for the answer, and tells them if they got it right.\n\nThe program should:\n1. Display: `What is 7 * 8?`\n2. Accept the user's answer\n3. Print `Correct!` if they answer `56`, or `Wrong! The answer is 56.` otherwise",
+      "starterCode": "# Quick Math Quiz\ncorrect_answer = 7 * 8\n\nprint('What is 7 * 8?')\nuser_answer = ___\n\n# Compare and give feedback\nif ___ == correct_answer:\n    print('Correct!')\nelse:\n    print('Wrong! The answer is ' + ___ + '.')",
+      "solutionCode": "correct_answer = 7 * 8\n\nprint('What is 7 * 8?')\nuser_answer = int(input())\n\nif user_answer == correct_answer:\n    print('Correct!')\nelse:\n    print('Wrong! The answer is ' + str(correct_answer) + '.')",
+      "tests": [
+        {
+          "name": "Converts input to int",
+          "assertion": "_assert_test('converts', 'int(' in _source_code and 'input()' in _source_code, 'Must convert user input to integer')",
+          "points": 3
+        },
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Program should run without errors')",
+          "points": 3
+        },
+        {
+          "name": "Gives correct feedback",
+          "assertion": "_assert_test('feedback', 'Correct!' in _captured_stdout or 'Wrong!' in _captured_stdout, 'Must print either Correct! or Wrong!')",
+          "points": 4
+        }
+      ],
+      "hints": [
+        "Get and convert: `user_answer = int(input())`",
+        "Compare with `==`, not `=`. Use `if` and `else` (preview of Chapter 2!).",
+        "Convert `correct_answer` to string for the error message: `str(correct_answer)`"
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Module 1 Final Check",
+      "content": "You've completed all the lessons in Module 1! Confirm your mastery:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can write and evaluate expressions with all 7 operators" },
+        { "id": "ck2", "text": "I understand int, float, str data types and can convert between them" },
+        { "id": "ck3", "text": "I can concatenate and replicate strings" },
+        { "id": "ck4", "text": "I can create, use, and overwrite variables" },
+        { "id": "ck5", "text": "I can write complete programs with print(), input(), len()" },
+        { "id": "ck6", "text": "I can read and fix common Python error messages" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Module 1 Reflection",
+      "prompts": [
+        "What concept from this module was hardest to grasp? What helped it click?",
+        "If you were teaching a friend Python, what's the first thing you'd show them?",
+        "What kind of program would you like to build with what you know so far?"
+      ]
+    }
+  ]
+}

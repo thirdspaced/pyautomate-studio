@@ -1,0 +1,69 @@
+{
+  "id": "m01-portfolio-01",
+  "moduleId": "m01",
+  "title": "Portfolio: Rectangle Printer",
+  "order": 6,
+  "estimatedMinutes": 15,
+  "objectives": [
+    "Apply string replication to create visual patterns",
+    "Use input() and int() to accept user-defined dimensions",
+    "Combine multiple print() calls to build multi-line output"
+  ],
+  "prerequisites": ["m01-l01", "m01-l02", "m01-l03", "m01-l04"],
+  "tags": ["portfolio", "string_replication", "patterns", "input"],
+  "sections": [
+    {
+      "type": "portfolio_project",
+      "title": "Rectangle Printer",
+      "content": "Write a program that asks the user for a width, then prints a filled rectangle of `O` characters that is 5 rows tall and the given width wide.\n\n**Example output for width = 8:**\n```\nEnter the width:\n8\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO\n```\n\n**Requirements:**\n- Use `input()` to get the width from the user\n- Convert the input to an integer with `int()`\n- Use string replication (`'O' * width`) to create each row\n- Call `print()` five times to produce five rows\n- Save this as `rectPrint.py`",
+      "starterCode": "# Rectangle Printer\n# Print a rectangle of O's that is 5 rows tall and user-defined width\n\nprint('Enter the width:')\nwidth = ___\n\n# Print 5 rows of O's\nrow = ___\nprint(row)\nprint(row)\nprint(row)\nprint(row)\nprint(row)",
+      "solutionCode": "print('Enter the width:')\nwidth = int(input())\n\nrow = 'O' * width\nprint(row)\nprint(row)\nprint(row)\nprint(row)\nprint(row)",
+      "tests": [
+        {
+          "name": "Uses input() for width",
+          "assertion": "_assert_test('uses_input', 'input()' in _source_code, 'Must use input() to get width from user')",
+          "points": 2
+        },
+        {
+          "name": "Uses int() conversion",
+          "assertion": "_assert_test('uses_int', 'int(' in _source_code, 'Must convert input to integer with int()')",
+          "points": 2
+        },
+        {
+          "name": "Uses string replication",
+          "assertion": "_assert_test('uses_replication', '*' in _source_code and \"'O'\" in _source_code or '\"O\"' in _source_code, 'Must use string replication with O character')",
+          "points": 3
+        },
+        {
+          "name": "Prints 5 rows",
+          "assertion": "_assert_test('five_rows', _captured_stdout.strip().count('\\n') >= 5, 'Output should have at least 5 rows (plus the prompt)')",
+          "points": 3
+        },
+        {
+          "name": "Rows match the requested width",
+          "assertion": "_assert_test('correct_width', any(line == 'O' * width for line in _captured_stdout.strip().split('\\n')), 'Each row should be O repeated width times')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Get the width: `width = int(input())`",
+        "Create a row: `row = 'O' * width` — this uses string replication.",
+        "Print the same row 5 times. Later you'll learn loops to avoid repeating `print(row)`!"
+      ],
+      "remixable": true,
+      "remixConstraints": {
+        "requiredSkills": ["input()", "int() conversion", "string replication", "print()"],
+        "acceptanceTests": [
+          "Program takes at least 1 numeric input from user",
+          "Program uses string replication to create a pattern",
+          "Program prints a multi-line visual pattern"
+        ],
+        "exampleRemixes": [
+          "Print a triangle of stars where each row gets one star wider",
+          "Print a checkerboard pattern of X and O characters",
+          "Print a custom border around a user-supplied message"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "id": "m04-l01",
+  "moduleId": "m04",
+  "title": "Creating Functions",
+  "order": 1,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Define functions using def statements",
+    "Pass arguments to function parameters",
+    "Return values from functions with return",
+    "Distinguish between defining a function and calling it"
+  ],
+  "prerequisites": ["m03-l03"],
+  "tags": ["functions", "def", "parameters", "arguments", "return"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Functions: Reusable Code Blocks",
+      "content": "A **function** is a named block of code that you can call whenever you need it. You've already used built-in functions like `print()` and `len()`. Now you'll create your own.\n\n```python\ndef greet(name):        # 'def' + function name + parameters\n    return 'Hello, ' + name + '!'\n```\n\n**Key terms:**\n- **`def` statement** — defines a function. Must end with `:`\n- **Parameters** — variables listed in the `def` line that receive values (e.g., `name`)\n- **Arguments** — the actual values you pass when calling the function (e.g., `'Alice'`)\n- **`return` statement** — sends a value back to the caller\n- **Function body** — the indented block after `def`\n\n**Important:** defining a function does NOT run it. You must **call** it: `greet('Alice')`."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Define and Call",
+      "content": "Notice that defining the function produces no output. The body only runs when you call it.",
+      "starterCode": "# Defining a function (no output yet)\ndef say_hello():\n    print('Hello!')\n\n# Nothing printed above! Now call it:\nsay_hello()\nsay_hello()\nsay_hello()\n\n# With parameters\ndef greet(name):\n    print('Hello, ' + name + '!')\n\ngreet('Alice')\ngreet('Bob')",
+      "hints": [
+        "A `def` statement creates the function. A function call (with parentheses) runs it.",
+        "Parameters are like variables that receive the argument values.",
+        "You can call a function as many times as you want after defining it."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Predict the Output",
+      "content": "What does each program print? Fill in the expected output.",
+      "starterCode": "# Program 1: define but never call\ndef say_hello():\n    print('Hello')\n# What prints? Replace ___ with the number of Hellos:\ncount_1 = ___\n\n# Program 2: call in a loop\ndef say_hi():\n    print('Hi')\nfor i in range(3):\n    say_hi()\ncount_2 = ___\n\n# Program 3: loop INSIDE function, called twice\ndef say_hey():\n    for i in range(3):\n        print('Hey')\nsay_hey()\nsay_hey()\ncount_3 = ___\n\nprint('Counts:', count_1, count_2, count_3)",
+      "solutionCode": "def say_hello():\n    print('Hello')\ncount_1 = 0\n\ndef say_hi():\n    print('Hi')\nfor i in range(3):\n    say_hi()\ncount_2 = 3\n\ndef say_hey():\n    for i in range(3):\n        print('Hey')\nsay_hey()\nsay_hey()\ncount_3 = 6\n\nprint('Counts:', count_1, count_2, count_3)",
+      "tests": [
+        {
+          "name": "Correct counts",
+          "assertion": "_assert_test('counts', 'Counts: 0 3 6' in _captured_stdout, 'Program 1: 0 (never called). Program 2: 3 (loop calls 3 times). Program 3: 6 (3 per call × 2 calls).')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Program 1: the function is defined but never called — 0 prints.",
+        "Program 2: the loop calls `say_hi()` 3 times — 3 prints.",
+        "Program 3: each call prints 3 times, called twice → 6 prints."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Return Values",
+      "content": "A `return` statement sends a value back to the code that called the function. Without `return`, functions return `None`.",
+      "starterCode": "# Function WITH return\ndef add(a, b):\n    return a + b\n\nresult = add(3, 5)\nprint('3 + 5 =', result)\n\n# Function WITHOUT return (returns None)\ndef greet(name):\n    print('Hello, ' + name)\n\nresult2 = greet('Alice')\nprint('Return value:', result2)  # None!",
+      "hints": [
+        "`return a + b` sends the computed value back — you can store it in a variable.",
+        "Without `return`, a function returns `None` (Python's 'nothing' value).",
+        "`print()` displays output but doesn't return a useful value."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Write Your Own Function",
+      "content": "Write a function called `double` that takes a number and returns that number multiplied by 2. Then call it with several values.",
+      "starterCode": "# Define a function that doubles a number\ndef double(___):\n    return ___\n\n# Test it\nprint(double(5))     # Should print 10\nprint(double(0))     # Should print 0\nprint(double(-3))    # Should print -6",
+      "solutionCode": "def double(n):\n    return n * 2\n\nprint(double(5))\nprint(double(0))\nprint(double(-3))",
+      "tests": [
+        {
+          "name": "double(5) returns 10",
+          "assertion": "_assert_test('double_5', '10' in _captured_stdout, 'double(5) should return 10')",
+          "points": 3
+        },
+        {
+          "name": "double(-3) returns -6",
+          "assertion": "_assert_test('double_neg', '-6' in _captured_stdout, 'double(-3) should return -6')",
+          "points": 3
+        },
+        {
+          "name": "Uses def and return",
+          "assertion": "_assert_test('structure', 'def double' in _source_code and 'return' in _source_code, 'Must define function with def and use return')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "The parameter can be any name: `def double(n):`",
+        "Return the doubled value: `return n * 2`",
+        "Make sure to use `return`, not `print` inside the function."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Return Type Detective",
+      "content": "What data type does each function return?",
+      "starterCode": "def enter_password(password):\n    if password == 'swordfish':\n        return True\n    else:\n        return False\n\ndef get_greeting():\n    print('What is your name?')\n    name = input()\n    return 'Hello, ' + name\n\ndef do_nothing():\n    x = 42\n\n# What type does each return?\ntype_a = '___'   # enter_password returns ?\ntype_b = '___'   # get_greeting returns ?\ntype_c = '___'   # do_nothing returns ?\n\nprint(type_a, type_b, type_c)",
+      "solutionCode": "def enter_password(password):\n    if password == 'swordfish':\n        return True\n    else:\n        return False\n\ndef get_greeting():\n    print('What is your name?')\n    name = input()\n    return 'Hello, ' + name\n\ndef do_nothing():\n    x = 42\n\ntype_a = 'bool'\ntype_b = 'str'\ntype_c = 'NoneType'\n\nprint(type_a, type_b, type_c)",
+      "tests": [
+        {
+          "name": "Correct return types",
+          "assertion": "_assert_test('types', 'bool str NoneType' in _captured_stdout, 'enter_password returns bool, get_greeting returns str, do_nothing returns NoneType (None)')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`enter_password` returns `True` or `False` — those are `bool` values.",
+        "`get_greeting` returns a string concatenation — that's a `str`.",
+        "`do_nothing` has no `return` statement, so it returns `None` (type `NoneType`)."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can define functions with def and parameters" },
+        { "id": "ck2", "text": "I understand the difference between defining and calling" },
+        { "id": "ck3", "text": "I can return values from functions" },
+        { "id": "ck4", "text": "I know that functions without return give None" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Why is it useful to put code inside a function instead of writing it directly?",
+        "What's the difference between print() inside a function and return?",
+        "Can you think of a repetitive task in your code that could become a function?"
+      ]
+    }
+  ]
+}

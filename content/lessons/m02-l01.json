@@ -1,0 +1,102 @@
+{
+  "id": "m02-l01",
+  "moduleId": "m02",
+  "title": "Boolean Values & Comparison Operators",
+  "order": 1,
+  "estimatedMinutes": 20,
+  "objectives": [
+    "Recognize the two Boolean values: True and False",
+    "Distinguish Boolean values from strings that look like them",
+    "Use the six comparison operators to create conditions",
+    "Understand why == and = are different"
+  ],
+  "prerequisites": ["m01-l05"],
+  "tags": ["boolean", "comparison_operators", "True", "False", "conditions"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "True, False, and Conditions",
+      "content": "The **Boolean** data type has exactly two values: `True` and `False` (capitalized). Booleans are the foundation of decision-making in code.\n\nPython has six **comparison operators** that evaluate to Boolean values:\n\n| Operator | Meaning | Example |\n|---|---|---|\n| `==` | Equal to | `5 == 5` → `True` |\n| `!=` | Not equal to | `5 != 3` → `True` |\n| `<` | Less than | `3 < 5` → `True` |\n| `>` | Greater than | `5 > 3` → `True` |\n| `<=` | Less than or equal to | `5 <= 5` → `True` |\n| `>=` | Greater than or equal to | `5 >= 6` → `False` |\n\n**Critical distinction:** `=` is the assignment operator (stores a value), while `==` is the comparison operator (checks equality).\n\n**Type matters:** `42 == 42.0` is `True` (same numeric value), but `42 == '42'` is `False` (int vs string)."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Boolean Values",
+      "content": "Run these examples to see which values Python recognizes as Booleans.",
+      "starterCode": "# Boolean values vs. look-alikes\nprint(type(True))       # <class 'bool'>\nprint(type(False))      # <class 'bool'>\nprint(type('True'))     # <class 'str'> — NOT a Boolean!\nprint(type('false'))    # <class 'str'> — still just a string\n\n# These cause NameError because they're not valid:\n# print(true)   # lowercase t — not defined!\n# print(FALSE)  # uppercase — not defined!",
+      "hints": [
+        "`True` and `False` must be capitalized exactly — `true`, `false`, `TRUE` are not valid.",
+        "Putting quotes around them makes them strings, not Booleans.",
+        "Only `True` and `False` (no quotes, capital first letter) are Boolean values."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Boolean or Not?",
+      "content": "For each value, answer `True` if it's a Python Boolean value, or `False` if it's not.",
+      "starterCode": "# Is it a Boolean value? True or False\na = ___   # False          (the value False itself)\nb = ___   # 'True'         (a string)\nc = ___   # false          (lowercase — would cause NameError)\nd = ___   # True           (the value True itself)\ne = ___   # 'false'        (a string)\nf = ___   # true           (lowercase — would cause NameError)\n\nprint(a, b, c, d, e, f)",
+      "solutionCode": "a = True    # False is a valid Boolean\nb = False   # 'True' is a string, not Boolean\nc = False   # false (lowercase) would cause NameError\nd = True    # True is a valid Boolean\ne = False   # 'false' is a string\nf = False   # true (lowercase) would cause NameError\n\nprint(a, b, c, d, e, f)",
+      "tests": [
+        {
+          "name": "Correct identification",
+          "assertion": "_assert_test('booleans', 'True False False True False False' in _captured_stdout, 'Only True and False (capitalized, no quotes) are Boolean values')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "Only two values are Booleans: `True` and `False` — capitalized, no quotes.",
+        "Anything in quotes is a string, even `'True'` and `'false'`.",
+        "Lowercase `true` and `false` are undefined names in Python."
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Comparison Operators",
+      "content": "Comparison operators compare two values and produce a Boolean result. Try each one and notice the pattern.",
+      "starterCode": "# Comparison operators in action\nprint(5 == 5)       # Equal to: True\nprint(5 != 3)       # Not equal to: True\nprint(3 < 5)        # Less than: True\nprint(5 > 3)        # Greater than: True\nprint(5 <= 5)       # Less than or equal to: True\nprint(5 >= 6)       # Greater than or equal to: False\n\n# Types matter!\nprint(42 == 42.0)   # True — same numeric value\nprint(42 == '42')   # False — int vs string!\n\n# This causes an error:\n# print(42 < 'hello')  # Can't compare int and str with <",
+      "hints": [
+        "`==` checks if two values are the same. `=` assigns a value to a variable.",
+        "Numbers can be compared across types: `42 == 42.0` is `True`.",
+        "But `42 == '42'` is `False` because an integer is never equal to a string."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Comparison Predictions",
+      "content": "Predict whether each comparison evaluates to `True` or `False`.",
+      "starterCode": "# Replace each ___ with True or False\n\na = (10 > 5)          == ___\nb = (3 == 3.0)        == ___\nc = ('hello' != 'Hello') == ___\nd = (7 <= 7)          == ___\ne = (10 >= 11)        == ___\nf = ('42' == 42)      == ___\n\nprint(a, b, c, d, e, f)",
+      "solutionCode": "a = (10 > 5)          == True\nb = (3 == 3.0)        == True\nc = ('hello' != 'Hello') == True\nd = (7 <= 7)          == True\ne = (10 >= 11)        == False\nf = ('42' == 42)      == False\n\nprint(a, b, c, d, e, f)",
+      "tests": [
+        {
+          "name": "All predictions correct",
+          "assertion": "_assert_test('comparisons', 'True True True True True True' in _captured_stdout, 'One or more comparison predictions is wrong')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`10 > 5` is `True`. `3 == 3.0` is `True` because they're the same numeric value.",
+        "Strings are case-sensitive: `'hello' != 'Hello'` is `True`.",
+        "A string and a number are never equal: `'42' == 42` is `False`."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I know that True and False are the only Boolean values" },
+        { "id": "ck2", "text": "I can use all six comparison operators" },
+        { "id": "ck3", "text": "I understand why = and == are different" },
+        { "id": "ck4", "text": "I know that 42 == '42' is False" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Why do you think Python requires == for comparison instead of just =?",
+        "Can you think of a real-world situation where you'd compare a number to a string?",
+        "What surprised you about how Python handles comparisons?"
+      ]
+    }
+  ]
+}

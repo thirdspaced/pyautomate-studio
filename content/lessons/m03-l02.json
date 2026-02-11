@@ -1,0 +1,125 @@
+{
+  "id": "m03-l02",
+  "moduleId": "m03",
+  "title": "for Loops & range()",
+  "order": 2,
+  "estimatedMinutes": 25,
+  "objectives": [
+    "Write for loops to execute code a specific number of times",
+    "Use range() with 1, 2, and 3 arguments",
+    "Avoid off-by-one errors with range()",
+    "Choose between while and for loops"
+  ],
+  "prerequisites": ["m03-l01"],
+  "tags": ["for", "range", "loops", "off_by_one", "iteration"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Counting with for and range()",
+      "content": "A `for` loop executes code a specific number of times using `range()`:\n\n```python\nfor i in range(5):    # i takes values 0, 1, 2, 3, 4\n    print(i)\n```\n\n**`range()` with different arguments:**\n- `range(stop)` — counts from 0 to stop-1: `range(5)` → 0, 1, 2, 3, 4\n- `range(start, stop)` — counts from start to stop-1: `range(1, 6)` → 1, 2, 3, 4, 5\n- `range(start, stop, step)` — counts with a step: `range(0, 10, 2)` → 0, 2, 4, 6, 8\n\n**Common off-by-one error:** `range(10)` gives 0–9, not 1–10. To get 1–10, use `range(1, 11)`.\n\n**When to use which:**\n- **for loop** — when you know how many times to repeat (or iterate over a sequence)\n- **while loop** — when you don't know how many times, and depend on a condition"
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: range() in Action",
+      "content": "Run these examples and observe the different outputs from different range() arguments.",
+      "starterCode": "# range(stop) — starts at 0\nprint('range(6):')\nfor i in range(6):\n    print(i, end=' ')\nprint()\n\n# range(start, stop)\nprint('range(1, 7):')\nfor i in range(1, 7):\n    print(i, end=' ')\nprint()\n\n# range(start, stop, step)\nprint('range(0, 10, 2):')\nfor i in range(0, 10, 2):\n    print(i, end=' ')\nprint()\n\n# Counting backwards\nprint('range(5, 0, -1):')\nfor i in range(5, 0, -1):\n    print(i, end=' ')\nprint()",
+      "hints": [
+        "`range(6)` generates 0, 1, 2, 3, 4, 5 — the stop value is EXCLUDED.",
+        "`range(1, 7)` generates 1, 2, 3, 4, 5, 6 — starts at 1, stops before 7.",
+        "`range(5, 0, -1)` counts DOWN: 5, 4, 3, 2, 1."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Predict the Output",
+      "content": "For each loop, predict what gets printed.",
+      "starterCode": "# Loop A: How many times does 'Hello' print?\ncount_a = 0\nfor i in range(3):\n    print('Hello')\n    count_a += 1\n\n# Loop B: What numbers are printed?\nfor i in range(1, 7):\n    pass  # prints 1 through ?\nlast_b = ___   # What is the LAST number printed?\n\n# Loop C: What numbers are printed?\nfor i in range(0, 6, 2):\n    pass  # prints even numbers\nlast_c = ___   # What is the LAST number printed?\n\nprint('Count A:', count_a)\nprint('Last B:', last_b)\nprint('Last C:', last_c)",
+      "solutionCode": "count_a = 0\nfor i in range(3):\n    print('Hello')\n    count_a += 1\n\nfor i in range(1, 7):\n    pass\nlast_b = 6\n\nfor i in range(0, 6, 2):\n    pass\nlast_c = 4\n\nprint('Count A:', count_a)\nprint('Last B:', last_b)\nprint('Last C:', last_c)",
+      "tests": [
+        {
+          "name": "Correct predictions",
+          "assertion": "_assert_test('predictions', 'Count A: 3' in _captured_stdout and 'Last B: 6' in _captured_stdout and 'Last C: 4' in _captured_stdout, 'range(3) runs 3 times, range(1,7) goes to 6, range(0,6,2) gives 0,2,4')",
+          "points": 5
+        }
+      ],
+      "hints": [
+        "`range(3)` iterates 3 times (0, 1, 2).",
+        "`range(1, 7)` goes from 1 to 6 (stop is excluded).",
+        "`range(0, 6, 2)` gives 0, 2, 4 — the step is 2, and 6 is excluded."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Sum 1 to 100",
+      "content": "Write a program that uses a for loop to add all integers from 1 to 100 and prints the total. The answer should be 5050.",
+      "starterCode": "# Add all integers from 1 to 100\ntotal = 0\n\nfor i in range(___, ___):\n    total = total + i\n\nprint('Sum of 1 to 100:', total)",
+      "solutionCode": "total = 0\n\nfor i in range(1, 101):\n    total = total + i\n\nprint('Sum of 1 to 100:', total)",
+      "tests": [
+        {
+          "name": "Correct sum",
+          "assertion": "_assert_test('sum_correct', '5050' in _captured_stdout, 'The sum of 1 to 100 is 5050')",
+          "points": 5
+        },
+        {
+          "name": "Uses for loop",
+          "assertion": "_assert_test('uses_for', 'for ' in _source_code and 'range' in _source_code, 'Must use a for loop with range()')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "To include 100, you need `range(1, 101)` — remember, stop is excluded!",
+        "Start `total` at 0, then add each `i` to it.",
+        "This is `range(1, 101)` — from 1 up to (but not including) 101."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Fix the Off-by-One",
+      "content": "A programmer expected this code to print the numbers 1 to 10, but it doesn't. Fix the bug.",
+      "starterCode": "# BUG: This prints 0 to 9, not 1 to 10!\n# Fix it so it prints exactly 1, 2, 3, ..., 10\nfor i in range(10):\n    print(i)",
+      "solutionCode": "for i in range(1, 11):\n    print(i)",
+      "tests": [
+        {
+          "name": "Starts at 1",
+          "assertion": "_assert_test('starts_1', _captured_stdout.strip().split('\\n')[0].strip() == '1', 'First number should be 1, not 0')",
+          "points": 3
+        },
+        {
+          "name": "Ends at 10",
+          "assertion": "_assert_test('ends_10', _captured_stdout.strip().split('\\n')[-1].strip() == '10', 'Last number should be 10')",
+          "points": 3
+        },
+        {
+          "name": "Prints exactly 10 numbers",
+          "assertion": "_assert_test('ten_nums', len(_captured_stdout.strip().split('\\n')) == 10, 'Should print exactly 10 numbers')",
+          "points": 2
+        }
+      ],
+      "hints": [
+        "`range(10)` starts at 0 and goes to 9. That's the off-by-one bug.",
+        "To print 1 to 10, use `range(1, 11)` — start at 1, stop before 11.",
+        "Alternative: `range(10)` with `print(i + 1)`, but `range(1, 11)` is cleaner."
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can write for loops with range()" },
+        { "id": "ck2", "text": "I know how range() works with 1, 2, and 3 arguments" },
+        { "id": "ck3", "text": "I understand off-by-one errors and how to avoid them" },
+        { "id": "ck4", "text": "I can choose between for and while loops" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Why does range(5) go from 0 to 4 instead of 1 to 5?",
+        "When would you use range(start, stop, step) with a step of -1?",
+        "What's the relationship between for loops and while loops?"
+      ]
+    }
+  ]
+}

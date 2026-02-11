@@ -1,0 +1,141 @@
+{
+  "id": "m01-l02",
+  "moduleId": "m01",
+  "title": "String Concatenation & Replication",
+  "order": 2,
+  "estimatedMinutes": 20,
+  "objectives": [
+    "Use the + operator to concatenate (join) strings together",
+    "Use the * operator to replicate (repeat) strings",
+    "Predict and fix common type errors with string operators",
+    "Understand why '13' + '12' is not the same as 13 + 12"
+  ],
+  "prerequisites": ["m01-l01"],
+  "tags": ["strings", "concatenation", "replication", "type_errors"],
+  "sections": [
+    {
+      "type": "concept",
+      "title": "Strings Meet Operators",
+      "content": "You already know that `+` adds numbers and `*` multiplies them. But these operators do something different with strings:\n\n- **`+` with two strings** → **concatenation** (joins them end-to-end)\n  - `'Hello' + 'World'` → `'HelloWorld'`\n- **`*` with a string and an int** → **replication** (repeats the string)\n  - `'Ha' * 3` → `'HaHaHa'`\n\nImportant: you **cannot** use `+` between a string and a number — that causes a `TypeError`. You also cannot use `*` between two strings, or `*` with a string and a float.\n\nThe meaning of an operator changes depending on the data types of the values next to it. This is called **operator overloading**."
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 1: Concatenation in Action",
+      "content": "Run the examples below and notice how `+` joins strings without adding any spaces between them.",
+      "starterCode": "# String concatenation with +\nprint('Hello' + 'Hello' + 'Hello')\nprint('Alice' + ' ' + 'Bob')     # Add a space manually\nprint('13' + '12')                # This is NOT 25!\nprint('The answer is: ' + str(42))  # Convert int to str first",
+      "hints": [
+        "Concatenation does NOT add spaces — you have to include them yourself.",
+        "`'13' + '12'` gives `'1312'` because both are strings, not numbers.",
+        "To combine a string with a number, convert the number first: `str(42)` → `'42'`."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Build a Greeting",
+      "content": "Use string concatenation to build a greeting. Replace the `___` blanks so the output reads:\n`Hello, Alice! Welcome to Python.`",
+      "starterCode": "# Build this output: Hello, Alice! Welcome to Python.\nname = 'Alice'\n\ngreeting = 'Hello, ' ___ name ___ '! Welcome to Python.'\nprint(greeting)",
+      "solutionCode": "name = 'Alice'\n\ngreeting = 'Hello, ' + name + '! Welcome to Python.'\nprint(greeting)",
+      "tests": [
+        {
+          "name": "Greeting is correct",
+          "assertion": "_assert_test('greeting', 'Hello, Alice! Welcome to Python.' in _captured_stdout, 'Expected: Hello, Alice! Welcome to Python.')",
+          "points": 5
+        },
+        {
+          "name": "Uses concatenation",
+          "assertion": "_assert_test('uses_concat', '+' in _source_code and 'name' in _source_code, 'Must use the + operator with the name variable')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "You need to join strings with `+` — try `'Hello, ' + name`.",
+        "Don't forget the punctuation: the exclamation mark goes right after the name.",
+        "Full answer: `'Hello, ' + name + '! Welcome to Python.'`"
+      ]
+    },
+    {
+      "type": "guided_code",
+      "title": "Step 2: Replication with *",
+      "content": "The `*` operator repeats a string a given number of times. The order doesn't matter — `'Ha' * 3` and `3 * 'Ha'` both work.",
+      "starterCode": "# String replication with *\nprint('Ha' * 3)\nprint(3 * 'Ha')            # Same result\nprint('-' * 40)            # Make a divider line!\nprint('O' * 8)             # Useful for drawing patterns\nprint((2 * 2) * 'Hello')   # Expression evaluates first: 4 * 'Hello'",
+      "hints": [
+        "The integer determines how many times the string repeats.",
+        "You can use replication to create visual separators like `'-' * 40`.",
+        "If the integer is 0 or negative, you get an empty string."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Error Spotter",
+      "content": "Some of these expressions cause errors. For each one, write a comment saying `# OK` if it works, or `# ERROR` if it causes a `TypeError`. Then uncomment only the OK lines and run the code.",
+      "starterCode": "# Which of these cause errors? Add # OK or # ERROR\n# Then uncomment only the OK lines.\n\n# a = 'Hello' * 3           ___\n# b = 'Hello' * 3.0         ___\n# c = 'Hello' + 3           ___\n# d = 'Hello' + '3'         ___\n# e = 'Alice' * 'Bob'       ___\n# f = 'Hello' / 5           ___\n\n# Uncomment the OK lines and print each result:\n",
+      "solutionCode": "a = 'Hello' * 3           # OK\n# b = 'Hello' * 3.0       # ERROR — can't multiply string by float\n# c = 'Hello' + 3         # ERROR — can't concatenate str and int\nd = 'Hello' + '3'         # OK\n# e = 'Alice' * 'Bob'     # ERROR — can't multiply two strings\n# f = 'Hello' / 5         # ERROR — can't divide a string\n\nprint(a)\nprint(d)",
+      "tests": [
+        {
+          "name": "Valid expressions produce correct output",
+          "assertion": "_assert_test('ok_lines', 'HelloHelloHello' in _captured_stdout and 'Hello3' in _captured_stdout, 'Expected HelloHelloHello and Hello3 in output')",
+          "points": 5
+        },
+        {
+          "name": "No errors raised",
+          "assertion": "_assert_test('no_errors', _error is None, 'Your code raised an error — make sure only valid lines are uncommented')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "`*` only works between a string and an **integer** — not a float, not another string.",
+        "`+` only works between two strings. `'Hello' + 3` fails because `3` is an int.",
+        "Lines a and d are OK. All the others cause TypeError."
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Exercise: Box Drawing",
+      "content": "Use string replication to draw a simple box pattern. The box should be 10 characters wide and look like this:\n```\n##########\n#        #\n#        #\n##########\n```",
+      "starterCode": "# Draw a 10-character-wide box using string replication\nwidth = 10\n\ntop = ___ * width\nmiddle = '#' + ___ * (width - 2) + '#'\nbottom = ___\n\nprint(top)\nprint(middle)\nprint(middle)\nprint(bottom)",
+      "solutionCode": "width = 10\n\ntop = '#' * width\nmiddle = '#' + ' ' * (width - 2) + '#'\nbottom = '#' * width\n\nprint(top)\nprint(middle)\nprint(middle)\nprint(bottom)",
+      "tests": [
+        {
+          "name": "Top row is 10 hashes",
+          "assertion": "_assert_test('top_row', '##########' in _captured_stdout, 'Top row should be 10 # characters')",
+          "points": 3
+        },
+        {
+          "name": "Middle rows have border and spaces",
+          "assertion": "_assert_test('middle_rows', '#        #' in _captured_stdout, 'Middle rows should be # followed by 8 spaces and #')",
+          "points": 4
+        },
+        {
+          "name": "Uses string replication",
+          "assertion": "_assert_test('uses_replication', \"'#' *\" in _source_code or '\"#\" *' in _source_code, 'Must use string replication with * operator')",
+          "points": 3
+        }
+      ],
+      "hints": [
+        "The top and bottom rows are just `'#' * width`.",
+        "The middle row is a `#`, then spaces, then a `#`. How many spaces? `width - 2`.",
+        "Full middle: `'#' + ' ' * (width - 2) + '#'`"
+      ]
+    },
+    {
+      "type": "checkpoint",
+      "title": "Knowledge Check",
+      "content": "Confirm your understanding before moving on:",
+      "checkpoints": [
+        { "id": "ck1", "text": "I can concatenate strings with +" },
+        { "id": "ck2", "text": "I can replicate strings with *" },
+        { "id": "ck3", "text": "I understand why 'Hello' + 3 causes an error" },
+        { "id": "ck4", "text": "I know the difference between '13' + '12' and 13 + 12" }
+      ]
+    },
+    {
+      "type": "reflection",
+      "title": "Reflect & Record",
+      "prompts": [
+        "Can you think of a real-world situation where string replication would be useful?",
+        "Why do you think Python doesn't automatically convert numbers to strings when you use +?",
+        "What was the trickiest error to spot in the Error Spotter exercise?"
+      ]
+    }
+  ]
+}
