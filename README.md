@@ -27,6 +27,7 @@ git push -u origin main
 1. Go to your repo on GitHub → **Settings** → **Pages**
 2. Under **Source**, select **GitHub Actions**
 3. That's it — the included workflow (`.github/workflows/deploy.yml`) auto-deploys on every push to `main`
+4. Note: Your repo needs to be public for free pages to work unless you have pro/enterprise.
 
 ### 3. Wait ~2 minutes for the first build
 
